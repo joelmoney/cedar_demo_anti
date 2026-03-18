@@ -128,37 +128,30 @@ export const journeys: Journey[] = [
       {
         headline: '',
         body: '',
-        lottieUrl: '/videos/animation/j1/j1_1.json',
       },
       {
         headline: '',
         body: '',
-        lottieUrl: '/videos/animation/j1/j1_2.json',
       },
       {
         headline: '',
         body: '',
-        lottieUrl: '/videos/animation/j1/j1_3.json',
       },
       {
         headline: '',
         body: '',
-        lottieUrl: '/videos/animation/j1/j1_4.json',
       },
       {
         headline: '',
         body: '',
-        lottieUrl: '/videos/animation/j1/j1_5.json',
       },
       {
         headline: '',
         body: '',
-        lottieUrl: '/videos/animation/j1/j1_6.json',
       },
       {
         headline: '',
         body: '',
-        lottieUrl: '/videos/animation/j1/j1_7.json',
       },
     ],
   },
