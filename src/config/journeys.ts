@@ -72,7 +72,7 @@ export const journeys: Journey[] = [
       body: 'This personalized experience is tailored based on your selections. Let\'s explore the journey together.',
       buttonText: 'Begin Journey',
     },
-    recapTitle: 'CONGRATULATIONS',
+    recapTitle: '',
     recapDescription: '',
     recapHighlights: [
       'Making large self-pay bills feel affordable',
@@ -175,7 +175,7 @@ export const journeys: Journey[] = [
       body: 'This personalized experience is tailored based on your selections. Let\'s explore the journey together.',
       buttonText: 'Begin Journey',
     },
-    recapTitle: 'CONGRATULATIONS',
+    recapTitle: '',
     recapDescription: '',
     recapHighlights: [
       'Turn confusing denials into covered claims',
@@ -265,7 +265,7 @@ export const journeys: Journey[] = [
       body: 'This personalized experience is tailored based on your selections. Let\'s explore the journey together.',
       buttonText: 'Begin Journey',
     },
-    recapTitle: 'CONGRATULATIONS',
+    recapTitle: '',
     recapDescription: '',
     recapHighlights: [
       'Unlock forgotten HSA dollars with proactive outreach',
@@ -365,7 +365,7 @@ export const journeys: Journey[] = [
       body: 'This personalized experience is tailored based on your selections. Let\'s explore the journey together.',
       buttonText: 'Begin Journey',
     },
-    recapTitle: 'CONGRATULATIONS',
+    recapTitle: '',
     recapDescription: '',
     recapHighlights: [
       'Convert "I\'ll pay what I can" into a sustainable plan',
@@ -475,7 +475,7 @@ export const journeys: Journey[] = [
       body: 'This personalized experience is tailored based on your selections. Let\'s explore the journey together.',
       buttonText: 'Begin Journey',
     },
-    recapTitle: 'CONGRATULATIONS',
+    recapTitle: '',
     recapDescription: '',
     recapHighlights: [
       'Catch coverage gaps before they become bad debt',
@@ -705,7 +705,7 @@ export const journeys: Journey[] = [
       body: 'This personalized experience is tailored based on your selections. Let\'s explore the journey together.',
       buttonText: 'Begin Journey',
     },
-    recapTitle: 'CONGRATULATIONS',
+    recapTitle: '',
     recapDescription: '',
     recapHighlights: [
       'Turn quick digital follow-ups into one‑click payments',
