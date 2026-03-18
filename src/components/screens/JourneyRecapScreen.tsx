@@ -68,13 +68,18 @@ export function JourneyRecapScreen({
             />
           </motion.div>
 
-          <p className="eyebrow text-electricgreen mb-8">
-            {eyebrowTitle}
-          </p>
-
-          <h1 className="headline text-electricgreen mb-12">
-            {recapTitle}
-          </h1>
+          <motion.div
+            initial={reducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+            className="w-48 h-auto flex items-center justify-center mx-auto mb-12"
+          >
+            <img
+              src="/images/recap_logo.png"
+              alt="Recap"
+              className="w-full h-full object-contain"
+            />
+          </motion.div>
 
           {recapDescription && (
             <p className="bodycopy text-white mb-12">
@@ -89,21 +94,41 @@ export function JourneyRecapScreen({
             className="rounded-3xl p-10 mb-12 flex flex-col items-center"
             style={{ backgroundColor: 'rgb(4 5 5 / 20%)' }}
           >
+            <motion.p
+              initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
+              className="eyebrow text-electricgreen mb-6 text-center"
+            >
+              {eyebrowTitle}
+            </motion.p>
+
+            <motion.h1
+              initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.35 }}
+              className="headline text-electricgreen text-center mb-6"
+            >
+              {recapTitle}
+            </motion.h1>
+
             {recapHighlights.length > 0 && (
               <>
-                <motion.h2
-                  initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.3 }}
-                  className="headline text-white text-center mb-6"
-                >
-                  {recapHighlights[0]}
-                </motion.h2>
+                {recapHighlights[0] && (
+                  <motion.h2
+                    initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.4 }}
+                    className="headline text-white text-center mb-6"
+                  >
+                    {recapHighlights[0]}
+                  </motion.h2>
+                )}
                 {recapHighlights[1] && (
                   <motion.p
                     initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.4 }}
+                    transition={{ duration: 0.4, delay: 0.45 }}
                     className="bodycopy text-center"
                     style={{ color: '#F9F8F1' }}
                   >
