@@ -118,7 +118,7 @@ function Section2({ reducedMotion }: { reducedMotion: boolean }) {
         </motion.div>
         <div className="flex-1">
           <TimedVideoOverlay
-            videoSrc="/videos/TestDataFlower_v03.5_kfEveryframe.mp4"
+            videoSrc="/videos/Attract_DataFlower_greenv03.5.mp4"
             videoClassName="w-full rounded-3xl"
             textPosition="above"
             textClassName="hidden"
@@ -136,7 +136,7 @@ function Section3({ reducedMotion, scrollContainer }: { reducedMotion: boolean; 
     <div className="w-full" style={{ backgroundColor: '#0F130A' }}>
       <div className="w-full max-w-[1920px] mx-auto">
         <ScrollVideo
-          videoSrc="/videos/TestDataFlower_v03.5_kfEveryframe.mp4"
+          videoSrc="/videos/Attract_DataFlower_greenv03.5.mp4"
           className="w-full"
           scrollContainer={scrollContainer}
         >
@@ -171,7 +171,7 @@ function Section4({ reducedMotion }: { reducedMotion: boolean }) {
           className="max-w-2xl w-full"
         >
           <TimedVideoOverlay
-            videoSrc="/videos/TestDataFlower_v03.5_kfEveryframe.mp4"
+            videoSrc="/videos/Attract_DataFlower_greenv03.5.mp4"
             videoClassName="w-full rounded-3xl"
             textPosition="above"
             textClassName="py-12"
