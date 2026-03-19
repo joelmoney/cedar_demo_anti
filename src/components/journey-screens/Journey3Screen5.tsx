@@ -21,7 +21,7 @@ export function Journey3Screen5({ reducedMotion = false, onNext }: Journey3Scree
     <div
       className="h-full w-full relative overflow-hidden flex items-center justify-center"
       style={{
-        backgroundImage: 'url(/images/J4_lockscreen.png)',
+        backgroundImage: 'url(/images/kora_background.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
