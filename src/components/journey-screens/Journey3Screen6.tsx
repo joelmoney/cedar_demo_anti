@@ -15,8 +15,8 @@ export function Journey3Screen6({ reducedMotion = false, onNext }: Journey3Scree
       <div className="flex-1 overflow-y-auto">
         <div className="max-w-2xl mx-auto px-5 py-8 flex items-center justify-center">
           <MobileShell>
-            <div className="h-full w-full bg-white overflow-y-auto">
-              <div className="px-5 py-6">
+            <div className="h-full w-full bg-white flex flex-col">
+              <div className="flex-1 overflow-y-auto px-5 py-6">
                 <button className="flex items-center gap-2 text-[#64748B] text-[15px] mb-6">
                   <svg width="8" height="14" viewBox="0 0 8 14" fill="none">
                     <path d="M7 1L1 7L7 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -75,7 +75,7 @@ export function Journey3Screen6({ reducedMotion = false, onNext }: Journey3Scree
                   </button>
                 </div>
 
-                <div>
+                <div className="pb-24">
                   <h3 className="text-[15px] font-semibold text-[#0F172A] mb-4">
                     New payment information
                   </h3>
