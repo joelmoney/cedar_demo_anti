@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { JourneyHeader } from '../JourneyHeader';
+import { JourneyFooter } from '../JourneyFooter';
 
 interface Journey3Screen5Props {
   reducedMotion?: boolean;
@@ -143,6 +144,8 @@ export function Journey3Screen5({ reducedMotion = false, onNext }: Journey3Scree
           </div>
         </div>
       </div>
+
+      <JourneyFooter />
     </div>
   );
 }
