@@ -11,6 +11,7 @@ import { Journey, journeys, mapSlidersToJourney } from './config/journeys';
 import { Journey3Screen1 } from './components/journey-screens/Journey3Screen1';
 import { Journey3Screen2 } from './components/journey-screens/Journey3Screen2';
 import { Journey3Screen3 } from './components/journey-screens/Journey3Screen3';
+import { Journey3Screen4 } from './components/journey-screens/Journey3Screen4';
 
 type FlowState = 'start' | 'welcome' | 'preamble' | 'sliders' | 'persona' | 'journey' | 'journeyRecap' | 'recap';
 
@@ -393,7 +394,7 @@ function App() {
     return parseInt(currentJourney.id.replace('journey', ''));
   };
 
-  const isJourney3FullScreenMode = currentJourney?.id === 'journey3' && currentJourneyStep >= 0 && currentJourneyStep <= 2;
+  const isJourney3FullScreenMode = currentJourney?.id === 'journey3' && currentJourneyStep >= 0 && currentJourneyStep <= 3;
 
   if (flowState === 'journey' && isJourney3FullScreenMode) {
     let screenComponent;
@@ -403,6 +404,8 @@ function App() {
       screenComponent = <Journey3Screen2 reducedMotion={reducedMotion} onNext={handleJourneyNext} />;
     } else if (currentJourneyStep === 2) {
       screenComponent = <Journey3Screen3 reducedMotion={reducedMotion} onNext={handleJourneyNext} />;
+    } else if (currentJourneyStep === 3) {
+      screenComponent = <Journey3Screen4 reducedMotion={reducedMotion} onNext={handleJourneyNext} />;
     }
 
     return (
