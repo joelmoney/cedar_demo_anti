@@ -60,12 +60,7 @@ export function Journey3Screen4({ }: Journey3Screen4Props) {
       <div className="absolute inset-0" style={{ backgroundColor: 'rgba(70, 90, 49, 0.6)' }} />
 
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-        <div
-          className="w-[300px] h-[300px] rounded-[20px] overflow-hidden"
-          style={{
-            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)'
-          }}
-        >
+        <div className="w-[300px] h-[300px] overflow-hidden">
           {!showLoopingVideo && (
             <video
               ref={introVideoRef}
