@@ -14,7 +14,6 @@ import { Journey2Screen2 } from '../journey-screens/Journey2Screen2';
 import { Journey2Screen3 } from '../journey-screens/Journey2Screen3';
 import { Journey2Screen4 } from '../journey-screens/Journey2Screen4';
 import { Journey2Screen5 } from '../journey-screens/Journey2Screen5';
-import { Journey3Screen0 } from '../journey-screens/Journey3Screen0';
 import { Journey3Screen1 } from '../journey-screens/Journey3Screen1';
 import { Journey3Screen2 } from '../journey-screens/Journey3Screen2';
 import { Journey3Screen3 } from '../journey-screens/Journey3Screen3';
@@ -169,53 +168,43 @@ export function JourneyScreen({ step, stepNumber, totalSteps, reducedMotion, jou
   }
 
   if (journeyId === 'journey3' && stepNumber === 1) {
-    console.log('Rendering Journey3Screen0 - New Screen 1 without video');
-    return <Journey3Screen0 reducedMotion={reducedMotion} onNext={onNext} />;
-  }
-
-  if (journeyId === 'journey3' && stepNumber === 2) {
-    console.log('Rendering Journey3Screen1 - Old Screen 1 with video');
     return <Journey3Screen1 reducedMotion={reducedMotion} onNext={onNext} />;
   }
 
-  if (journeyId === 'journey3' && stepNumber === 3) {
-    console.log('Rendering Journey3Screen2 - Old Screen 2');
+  if (journeyId === 'journey3' && stepNumber === 2) {
     return <Journey3Screen2 reducedMotion={reducedMotion} onNext={onNext} />;
   }
 
-  if (journeyId === 'journey3' && stepNumber === 4) {
-    console.log('Rendering Journey3Screen3 - Old Screen 3');
+  if (journeyId === 'journey3' && stepNumber === 3) {
     return <Journey3Screen3 reducedMotion={reducedMotion} onNext={onNext} />;
   }
 
-  if (journeyId === 'journey3' && stepNumber === 5) {
-    console.log('Rendering Journey3Screen4 - Old Screen 4');
+  if (journeyId === 'journey3' && stepNumber === 4) {
     return <Journey3Screen4 reducedMotion={reducedMotion} onNext={onNext} />;
   }
 
-  if (journeyId === 'journey3' && stepNumber === 6) {
-    console.log('Rendering Journey3Screen5 - Old Screen 5');
+  if (journeyId === 'journey3' && stepNumber === 5) {
     return <Journey3Screen5 reducedMotion={reducedMotion} onNext={onNext} />;
   }
 
-  if (journeyId === 'journey3' && stepNumber === 7) {
-    console.log('Rendering Journey3Screen6 - Old Screen 6');
+  if (journeyId === 'journey3' && stepNumber === 6) {
     return <Journey3Screen6 reducedMotion={reducedMotion} onNext={onNext} />;
   }
 
-  if (journeyId === 'journey3' && stepNumber === 8) {
-    console.log('Rendering Journey3Screen7 - Old Screen 7 with HSA $600');
+  if (journeyId === 'journey3' && stepNumber === 7) {
     return <Journey3Screen7 reducedMotion={reducedMotion} onNext={onNext} />;
   }
 
-  if (journeyId === 'journey3' && stepNumber === 9) {
-    console.log('Rendering Journey3Screen8 - Old Screen 8 with HSA $129.04');
+  if (journeyId === 'journey3' && stepNumber === 8) {
     return <Journey3Screen8 reducedMotion={reducedMotion} onNext={onNext} />;
   }
 
-  if (journeyId === 'journey3' && stepNumber === 10) {
-    console.log('Rendering Journey3Screen9 - Old Screen 9');
+  if (journeyId === 'journey3' && stepNumber === 9) {
     return <Journey3Screen9 reducedMotion={reducedMotion} onNext={onNext} />;
+  }
+
+  if (journeyId === 'journey3' && stepNumber === 10) {
+    return <Journey3Screen10 reducedMotion={reducedMotion} onNext={onNext} />;
   }
 
   if (journeyId === 'journey4' && stepNumber === 1) {

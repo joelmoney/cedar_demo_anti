@@ -1,5 +1,6 @@
 import { JourneyHeader } from '../JourneyHeader';
 import { JourneyFooter } from '../JourneyFooter';
+import { WaveAnimation } from '../WaveAnimation';
 
 interface Journey3Screen10Props {
   reducedMotion?: boolean;
@@ -8,18 +9,35 @@ interface Journey3Screen10Props {
 
 export function Journey3Screen10({ reducedMotion = false, onNext }: Journey3Screen10Props) {
   return (
-    <div className="h-full w-full bg-[#F5F7FA] overflow-y-auto scrollbar-hide relative">
-      <div className="min-h-full flex flex-col">
-        <JourneyHeader />
+    <div className="h-full w-full flex flex-col bg-[#F8F9FA]">
+      <JourneyHeader />
 
-        <main className="flex-1 px-5 pt-8 pb-6 flex flex-col items-center justify-center">
-          <h1 className="text-2xl font-bold text-[#1E293B] text-center mb-3">
-            Journey Complete
-          </h1>
-        </main>
-
-        <JourneyFooter />
+      <div className="flex-1 overflow-y-auto">
+        <div className="max-w-2xl mx-auto px-5 py-8">
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="text-center mb-4">
+              <p className="text-sm font-medium text-slate-500 mb-2">Journey 3</p>
+              <h2 className="text-2xl font-semibold text-slate-900">
+                Placeholder Screen 9
+              </h2>
+            </div>
+            <div className="mb-6">
+              <WaveAnimation className="w-full h-auto rounded-lg" />
+            </div>
+            <p className="text-slate-600 mb-6">
+              Content will be added here.
+            </p>
+            <button
+              onClick={onNext}
+              className="w-full bg-[#4169E1] hover:bg-[#3557C5] text-white font-semibold py-3 px-6 rounded-lg transition-colors btnpulse"
+            >
+              Finish
+            </button>
+          </div>
+        </div>
       </div>
+
+      <JourneyFooter />
     </div>
   );
 }

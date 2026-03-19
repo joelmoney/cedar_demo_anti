@@ -1,6 +1,7 @@
+import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { JourneyHeader } from '../JourneyHeader';
 import { JourneyFooter } from '../JourneyFooter';
-import { motion } from 'framer-motion';
 
 interface Journey3Screen8Props {
   reducedMotion?: boolean;
@@ -8,72 +9,135 @@ interface Journey3Screen8Props {
 }
 
 export function Journey3Screen8({ reducedMotion = false, onNext }: Journey3Screen8Props) {
+  const [amount, setAmount] = useState(0);
+  const targetAmount = 470.96;
+
+  useEffect(() => {
+    const duration = 1500;
+    const steps = 60;
+    const increment = targetAmount / steps;
+    const stepDuration = duration / steps;
+
+    let currentStep = 0;
+    const timer = setInterval(() => {
+      currentStep++;
+      if (currentStep <= steps) {
+        setAmount(increment * currentStep);
+      } else {
+        setAmount(targetAmount);
+        clearInterval(timer);
+      }
+    }, stepDuration);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <div className="h-full w-full bg-[#F5F7FA] overflow-y-auto scrollbar-hide relative">
-      <div className="min-h-full flex flex-col">
-        <JourneyHeader />
+    <div className="h-full w-full flex flex-col bg-[#F8F9FA]">
+      <JourneyHeader />
 
-        <main className="flex-1 px-5 pt-8 pb-6 flex flex-col items-center">
-          <motion.div
-            initial={reducedMotion ? { opacity: 1 } : { opacity: 0, x: -80 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-6"
-          >
-            <img src="/images/mail.png" alt="Mail" className="w-[65px] h-[55px]" />
-          </motion.div>
+      <div className="flex-1 overflow-y-auto">
+        <div className="max-w-md mx-auto bg-white min-h-full flex flex-col">
+          <div className="flex-1 px-5 py-4">
+            <button className="flex items-center gap-2 text-slate-600 text-[15px] mb-6">
+              <svg width="8" height="14" viewBox="0 0 8 14" fill="none">
+                <path d="M7 1L1 7L7 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              Back
+            </button>
 
-          <h1 className="text-2xl font-bold text-[#1E293B] text-center mb-3">
-            Payment confirmed!
-          </h1>
+            <h1 className="text-[32px] font-bold text-[#0A2540] leading-tight mb-8 text-center">
+              Payment summary
+            </h1>
 
-          <p className="text-center text-[#475569] text-sm mb-2 px-4">
-            Thank you for your payment of{' '}
-            <span className="font-bold text-[#1E293B]">$470.96</span>.
-          </p>
-
-          <motion.div
-            initial={reducedMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full max-w-sm bg-white rounded-3xl shadow-lg p-6 mt-6"
-          >
-            <div className="flex flex-col items-center mb-6 pb-6 border-b border-[#E2E8F0]">
-              <img src="/images/sentmail.png" alt="Sent mail" className="w-[26px] h-[14px] mb-3" />
-              <div className="text-center">
-                <div className="text-[#1E293B] font-semibold text-sm mb-1">
-                  We emailed you a receipt
-                </div>
-                <div className="text-[#64748B] text-sm">
-                  j.velez.academics@univ.edu
-                </div>
+            <div className="space-y-4 mb-8">
+              <div className="flex items-center justify-between py-3 border-b border-slate-100">
+                <span className="text-[15px] text-slate-600">Total due</span>
+                <span className="text-[17px] font-semibold text-slate-900">$470.96</span>
+              </div>
+              <div className="flex items-center justify-between py-3 border-b border-slate-200">
+                <span className="text-[15px] text-slate-600">Payment total</span>
+                <span className="text-[17px] font-semibold text-slate-900">$470.96</span>
               </div>
             </div>
 
-            <div className="text-center">
-              <div className="text-[#64748B] text-sm mb-2">
-                Confirmation number:
-              </div>
-              <div className="text-[#1E293B] font-bold text-base mb-4">
-                PA-2874-6525-2343
-              </div>
+            <div className="text-center mb-6">
+              <p className="text-[15px] text-slate-700 mb-2">
+                You're about to make a payment of
+              </p>
+              <motion.p
+                className="text-[32px] font-bold text-[#0A2540] mb-3"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                ${amount.toFixed(2)}
+              </motion.p>
+              <p className="text-[14px] text-slate-600">
+                Remaining balance: $0.00
+              </p>
             </div>
 
-            <div className="bg-[#EBF4FF] rounded-lg p-3 mt-4">
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <div className="text-[14px] font-semibold text-slate-900">HSA/FSA balance</div>
-                  <div className="text-[12px] text-slate-600 mt-0.5">
-                    Tax-free dollars available in your health savings accounts
+            <div className="mb-6">
+              <h3 className="text-[14px] text-slate-600 mb-3">
+                Payment method
+              </h3>
+
+              <div className="bg-white border border-slate-200 rounded-xl p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 rounded-full bg-[#4169E1] flex items-center justify-center flex-shrink-0">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M2 8C2 4.686 4.686 2 8 2C11.314 2 14 4.686 14 8C14 11.314 11.314 14 8 14C4.686 14 2 11.314 2 8Z" fill="white"/>
+                      <path d="M8 5V8L10 10" stroke="#4169E1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <div className="flex-1 text-left">
+                    <div className="text-[16px] font-semibold text-slate-900">Blue Star Wallet</div>
+                    <div className="text-[13px] text-slate-600">Health Savings Account</div>
                   </div>
                 </div>
-                <div className="text-[14px] font-semibold text-slate-900 ml-3">$129.04</div>
+
+                <div className="pt-3 border-t border-slate-100">
+                  <div className="bg-[#EBF4FF] rounded-lg p-3">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <div className="text-[14px] font-semibold text-slate-900">HSA/FSA balance</div>
+                        <div className="text-[12px] text-slate-600 mt-0.5">
+                          Tax-free dollars available in your health savings accounts
+                        </div>
+                      </div>
+                      <div className="text-[14px] font-semibold text-slate-900 ml-3">$600.00</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </motion.div>
-        </main>
 
-        <JourneyFooter />
+            <div className="mb-4">
+              <div className="text-[14px] text-slate-600 mb-2">Email receipt</div>
+              <div className="flex items-center justify-between bg-slate-50 rounded-lg p-3">
+                <span className="text-[15px] text-slate-900">agold@gmail.com</span>
+                <button className="text-[15px] text-[#4169E1] font-semibold">Edit</button>
+              </div>
+            </div>
+
+            <button
+              onClick={onNext}
+              className="w-full bg-[#4169E1] hover:bg-[#3557C5] text-white font-semibold py-4 px-6 rounded-xl transition-colors text-[16px] btnpulse mb-3"
+            >
+              Pay $470.96
+            </button>
+
+            <div className="flex items-center justify-center gap-2 text-[13px] text-slate-600">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M8 1C4.134 1 1 4.134 1 8C1 11.866 4.134 15 8 15C11.866 15 15 11.866 15 8C15 4.134 11.866 1 8 1Z" stroke="currentColor" strokeWidth="1.5"/>
+                <path d="M8 5V8M8 11H8.005" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+              <span>Secure payments</span>
+            </div>
+          </div>
+
+          <JourneyFooter />
+        </div>
       </div>
     </div>
   );

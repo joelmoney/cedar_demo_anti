@@ -1,67 +1,99 @@
-import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
+import { RotateCcw } from 'lucide-react';
 
 interface Journey3Screen4Props {
   reducedMotion?: boolean;
   onNext?: () => void;
 }
 
-export function Journey3Screen4({ reducedMotion = false, onNext }: Journey3Screen4Props) {
-  const [showAlert, setShowAlert] = useState(false);
+export function Journey3Screen4({ }: Journey3Screen4Props) {
+  const [showLoopingVideo, setShowLoopingVideo] = useState(false);
+  const introVideoRef = useRef<HTMLVideoElement>(null);
+  const loopingVideoRef = useRef<HTMLVideoElement>(null);
+
+  const handleReplay = () => {
+    setShowLoopingVideo(false);
+    setTimeout(() => {
+      if (introVideoRef.current) {
+        introVideoRef.current.currentTime = 0;
+        introVideoRef.current.play().catch(err => console.error('Error replaying video:', err));
+      }
+    }, 50);
+  };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowAlert(true);
-    }, 800);
+    const introVideo = introVideoRef.current;
+    if (!introVideo) return;
 
-    return () => clearTimeout(timer);
+    introVideo.volume = 1.0;
+
+    const handleEnded = () => {
+      setShowLoopingVideo(true);
+    };
+
+    introVideo.addEventListener('ended', handleEnded);
+    introVideo.play().catch(err => console.error('Error playing intro video:', err));
+
+    return () => {
+      introVideo.removeEventListener('ended', handleEnded);
+    };
   }, []);
 
-  return (
-    <div
-      className="h-full w-full relative overflow-hidden flex items-center justify-center"
-      style={{
-        backgroundImage: 'url(/images/J4_lockscreen.png)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={showAlert ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-        transition={{
-          duration: 0.5,
-          ease: [0.25, 0.46, 0.45, 0.94]
-        }}
-        className="mx-4 z-10 max-w-md w-full cursor-pointer"
-        onClick={onNext}
-      >
-        <div className="bg-white/60 backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden">
-          <div className="px-4 py-3 flex items-center justify-between border-b border-slate-200/50">
-            <div className="flex items-center gap-2">
-              <img
-                src="/images/messages_icon.png"
-                alt="Messages"
-                className="w-6 h-6 flex-shrink-0"
-              />
-              <span className="text-[13px] font-semibold text-slate-900">MESSAGES</span>
-            </div>
-            <span className="text-[13px] font-normal text-slate-500">now</span>
-          </div>
+  useEffect(() => {
+    if (showLoopingVideo && loopingVideoRef.current) {
+      loopingVideoRef.current.volume = 1.0;
+      loopingVideoRef.current.play().catch(err => console.error('Error playing looping video:', err));
+    }
+  }, [showLoopingVideo]);
 
-          <div className="px-4 py-3">
-            <div className="text-[15px] font-semibold text-slate-900 mb-1">
-              ABC Health
-            </div>
-            <div className="text-[14px] text-slate-700 leading-relaxed mb-2">
-              Good morning, Juliana! You have funds available in your Blue Star HSA account ending in **1234 that you can put towards paying your outstanding balance. Log in for more information: <a href="#" className="text-[#007AFF] font-medium">abchealthsystem.org</a>.
-            </div>
-            <div className="text-[14px] text-slate-500">
-              Reply "STOP" to unsubscribe.
-            </div>
-          </div>
+  return (
+    <div className="h-full w-full relative overflow-hidden" style={{ backgroundColor: '#465A31' }}>
+      <div
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage: 'url(/images/persona_3.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          filter: 'grayscale(100%)',
+        }}
+      />
+      <div className="absolute inset-0" style={{ backgroundColor: 'rgba(70, 90, 49, 0.6)' }} />
+
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+        <div
+          className="w-[300px] h-[300px] rounded-[20px] overflow-hidden"
+          style={{
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)'
+          }}
+        >
+          {!showLoopingVideo && (
+            <video
+              ref={introVideoRef}
+              className="w-full h-full object-cover"
+              playsInline
+            >
+              <source src="/videos/kora_cedarintel_p3.mp4" type="video/mp4" />
+            </video>
+          )}
+          {showLoopingVideo && (
+            <video
+              ref={loopingVideoRef}
+              className="w-full h-full object-cover"
+              playsInline
+              loop
+            >
+              <source src="/videos/kora_cedarintel_resting.mp4" type="video/mp4" />
+            </video>
+          )}
         </div>
-      </motion.div>
+        <button
+          onClick={handleReplay}
+          className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-sm"
+          aria-label="Replay video"
+        >
+          <RotateCcw size={20} className="text-white" />
+        </button>
+      </div>
     </div>
   );
 }

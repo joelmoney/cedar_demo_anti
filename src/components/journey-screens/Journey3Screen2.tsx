@@ -51,7 +51,7 @@ export function Journey3Screen2({ }: Journey3Screen2Props) {
       <div
         className="absolute inset-0 opacity-20"
         style={{
-          backgroundImage: 'url(/images/persona_2.jpg)',
+          backgroundImage: 'url(/images/persona_1.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           filter: 'grayscale(100%)',
@@ -72,7 +72,7 @@ export function Journey3Screen2({ }: Journey3Screen2Props) {
               className="w-full h-full object-cover"
               playsInline
             >
-              <source src="/videos/kora_cedarintel_p2.mp4" type="video/mp4" />
+              <source src="/videos/kora_cedarintel_p1.mp4" type="video/mp4" />
             </video>
           )}
           {showLoopingVideo && (
