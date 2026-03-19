@@ -51,7 +51,7 @@ export function Journey3Screen4({ }: Journey3Screen4Props) {
       <div
         className="absolute inset-0 opacity-20"
         style={{
-          backgroundImage: 'url(/images/persona_3.jpg)',
+          backgroundImage: 'url(/images/kora_background.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           filter: 'grayscale(100%)',
