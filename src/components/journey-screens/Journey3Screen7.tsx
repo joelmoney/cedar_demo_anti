@@ -97,14 +97,16 @@ export function Journey3Screen7({ reducedMotion = false, onNext }: Journey3Scree
                 </div>
 
                 <div className="pt-3 border-t border-slate-100">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="text-[14px] font-semibold text-slate-900">HSA/FSA balance</div>
-                      <div className="text-[12px] text-slate-600 mt-0.5">
-                        Tax-free dollars available in your health savings accounts
+                  <div className="bg-[#EBF4FF] rounded-lg p-3">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <div className="text-[14px] font-semibold text-slate-900">HSA/FSA balance</div>
+                        <div className="text-[12px] text-slate-600 mt-0.5">
+                          Tax-free dollars available in your health savings accounts
+                        </div>
                       </div>
+                      <div className="text-[14px] font-semibold text-slate-900 ml-3">$600.00</div>
                     </div>
-                    <div className="text-[14px] font-semibold text-slate-900 ml-3">$600.00</div>
                   </div>
                 </div>
               </div>

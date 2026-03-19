@@ -54,8 +54,20 @@ export function Journey3Screen8({ reducedMotion = false, onNext }: Journey3Scree
               <div className="text-[#64748B] text-sm mb-2">
                 Confirmation number:
               </div>
-              <div className="text-[#1E293B] font-bold text-base">
+              <div className="text-[#1E293B] font-bold text-base mb-4">
                 PA-2874-6525-2343
+              </div>
+            </div>
+
+            <div className="bg-[#EBF4FF] rounded-lg p-3 mt-4">
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <div className="text-[14px] font-semibold text-slate-900">HSA/FSA balance</div>
+                  <div className="text-[12px] text-slate-600 mt-0.5">
+                    Tax-free dollars available in your health savings accounts
+                  </div>
+                </div>
+                <div className="text-[14px] font-semibold text-slate-900 ml-3">$129.04</div>
               </div>
             </div>
           </motion.div>
