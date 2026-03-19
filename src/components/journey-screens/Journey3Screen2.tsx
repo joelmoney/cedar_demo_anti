@@ -12,6 +12,8 @@ export function Journey3Screen2({ }: Journey3Screen2Props) {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
-    />
+    >
+      <div className="absolute inset-0" style={{ backgroundColor: 'rgba(70, 90, 49, 0.6)' }} />
+    </div>
   );
 }
