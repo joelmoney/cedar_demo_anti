@@ -53,7 +53,6 @@ import { Journey6Screen1 } from '../journey-screens/Journey6Screen1';
 import { Journey6Screen2 } from '../journey-screens/Journey6Screen2';
 import { Journey6Screen3 } from '../journey-screens/Journey6Screen3';
 import { Journey6Screen4 } from '../journey-screens/Journey6Screen4';
-import { Journey6Screen5 } from '../journey-screens/Journey6Screen5';
 
 interface JourneyScreenProps {
   step: JourneyStep;
@@ -133,11 +132,6 @@ export function JourneyScreen({ step, stepNumber, totalSteps, reducedMotion, jou
   if (journeyId === 'journey6' && stepNumber === 4) {
     console.log('Rendering Journey6Screen4');
     return <Journey6Screen4 reducedMotion={reducedMotion} onNext={onNext} />;
-  }
-
-  if (journeyId === 'journey6' && stepNumber === 5) {
-    console.log('Rendering Journey6Screen5');
-    return <Journey6Screen5 reducedMotion={reducedMotion} onNext={onNext} />;
   }
 
 

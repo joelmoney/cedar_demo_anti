@@ -762,11 +762,6 @@ export const journeys: Journey[] = [
         instruction: 'Tap to continue',
       },
       {
-        headline: 'Quick verification, no full login',
-        body: 'When Chris clicks through, Cedar confrims his identity with a lightweight verification rather than sending him through a full portal login. That protects access to his information while maintaining the "in‑between‑commercials" speed he expects from modern digital tools.',
-        instruction: 'Tap to continue',
-      },
-      {
         headline: 'Straight into checkout',
         body: 'Instead of landing on a generic overview, Chris goes directly to a streamlined checkout screen that summarizes his balance and pre‑selects his usual payment method (with the option to change it). Chris quickly reviews the amount and confirms with a single click. All of the unnecessary steps between "I got the email" and "I paid" are removed, so the experience feels like a standard consumer checkout—clear, predictable, and over in seconds.',
         instruction: 'Tap to continue',
@@ -795,11 +790,6 @@ export const journeys: Journey[] = [
       },
       {
         headline: 'Welcome to Journey 6 - Screen 4',
-        body: 'Keep pushing boundaries and exploring new frontiers.',
-        instruction: 'Tap to continue',
-      },
-      {
-        headline: 'Welcome to Journey 6 - Screen 5',
         body: 'Keep pushing boundaries and exploring new frontiers.',
         instruction: 'Tap to finish',
       },
