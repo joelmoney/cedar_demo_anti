@@ -18,7 +18,14 @@ export function Journey3Screen5({ reducedMotion = false, onNext }: Journey3Scree
   }, []);
 
   return (
-    <div className="h-full w-full relative overflow-hidden flex items-center justify-center">
+    <div
+      className="h-full w-full relative overflow-hidden flex items-center justify-center"
+      style={{
+        backgroundImage: 'url(/images/J3_lockscreen_final.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={showAlert ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}

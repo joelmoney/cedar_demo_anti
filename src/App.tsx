@@ -507,9 +507,7 @@ function App() {
         reducedMotion={reducedMotion}
         fullScreen={false}
         backgroundImage={
-          currentJourney?.id === 'journey3' && currentJourneyStep === 5
-            ? '/images/J5_lockscreen_final.jpg'
-            : currentJourney?.id === 'journey3' && currentJourneyStep >= 4 && currentJourneyStep <= 8
+          currentJourney?.id === 'journey3' && currentJourneyStep >= 4 && currentJourneyStep <= 8
             ? '/images/kora_background.jpg'
             : currentJourney?.persona.imageUrl
         }
