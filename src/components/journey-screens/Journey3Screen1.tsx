@@ -25,6 +25,8 @@ export function Journey3Screen1({ }: Journey3Screen1Props) {
     const introVideo = introVideoRef.current;
     if (!introVideo) return;
 
+    introVideo.volume = 1.0;
+
     const handleEnded = () => {
       setShowLoopingVideo(true);
     };
@@ -39,6 +41,7 @@ export function Journey3Screen1({ }: Journey3Screen1Props) {
 
   useEffect(() => {
     if (showLoopingVideo && loopingVideoRef.current) {
+      loopingVideoRef.current.volume = 1.0;
       loopingVideoRef.current.play().catch(err => console.error('Error playing looping video:', err));
     }
   }, [showLoopingVideo]);
