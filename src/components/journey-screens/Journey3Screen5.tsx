@@ -37,8 +37,8 @@ export function Journey3Screen5({ reducedMotion = false, onNext }: Journey3Scree
       <JourneyHeader />
 
       <div className="flex-1 overflow-y-auto">
-        <div className="max-w-md mx-auto bg-white h-full">
-          <div className="px-5 py-4">
+        <div className="max-w-md mx-auto bg-white min-h-full flex flex-col">
+          <div className="px-5 py-4 flex-1">
             <button className="flex items-center gap-2 text-slate-600 text-[15px] mb-6">
               <svg width="8" height="14" viewBox="0 0 8 14" fill="none">
                 <path d="M7 1L1 7L7 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -106,7 +106,7 @@ export function Journey3Screen5({ reducedMotion = false, onNext }: Journey3Scree
               </button>
             </div>
 
-            <details className="bg-[#F8FAFC] rounded-xl overflow-hidden">
+            <details className="bg-[#F8FAFC] rounded-xl overflow-hidden mb-6">
               <summary className="px-5 py-4 cursor-pointer flex items-center justify-between text-[15px] font-medium text-slate-900">
                 <span>Balance breakdown</span>
                 <svg width="12" height="8" viewBox="0 0 12 8" className="transform transition-transform text-slate-600">
@@ -142,10 +142,10 @@ export function Journey3Screen5({ reducedMotion = false, onNext }: Journey3Scree
               </div>
             </details>
           </div>
+
+          <JourneyFooter />
         </div>
       </div>
-
-      <JourneyFooter />
     </div>
   );
 }
