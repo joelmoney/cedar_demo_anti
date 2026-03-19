@@ -46,27 +46,32 @@ export function Journey3Screen1({ }: Journey3Screen1Props) {
       <div className="absolute inset-0" style={{ backgroundColor: 'rgba(70, 90, 49, 0.6)' }} />
 
       <div className="absolute inset-0 flex items-center justify-center">
-        {!showLoopingVideo && (
-          <video
-            ref={introVideoRef}
-            className="max-w-full max-h-full"
-            muted
-            playsInline
-          >
-            <source src="/videos/kora_cedarintel_p1.mp4" type="video/mp4" />
-          </video>
-        )}
-        {showLoopingVideo && (
-          <video
-            ref={loopingVideoRef}
-            className="max-w-full max-h-full"
-            muted
-            playsInline
-            loop
-          >
-            <source src="/videos/kora_cedarintel_resting.mp4" type="video/mp4" />
-          </video>
-        )}
+        <div
+          className="w-[300px] h-[300px] rounded-[20px] overflow-hidden"
+          style={{
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)'
+          }}
+        >
+          {!showLoopingVideo && (
+            <video
+              ref={introVideoRef}
+              className="w-full h-full object-cover"
+              playsInline
+            >
+              <source src="/videos/kora_cedarintel_p1.mp4" type="video/mp4" />
+            </video>
+          )}
+          {showLoopingVideo && (
+            <video
+              ref={loopingVideoRef}
+              className="w-full h-full object-cover"
+              playsInline
+              loop
+            >
+              <source src="/videos/kora_cedarintel_resting.mp4" type="video/mp4" />
+            </video>
+          )}
+        </div>
       </div>
     </div>
   );
