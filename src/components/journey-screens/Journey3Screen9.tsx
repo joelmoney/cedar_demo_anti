@@ -9,19 +9,7 @@ interface Journey3Screen9Props {
 
 export function Journey3Screen9({ reducedMotion = false, onNext }: Journey3Screen9Props) {
   return (
-    <div className="h-full w-full relative overflow-hidden" style={{ backgroundColor: '#465A31' }}>
-      <div
-        className="absolute inset-0 opacity-20"
-        style={{
-          backgroundImage: 'url(/images/kora_background.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          filter: 'grayscale(100%)',
-        }}
-      />
-      <div className="absolute inset-0" style={{ backgroundColor: 'rgba(70, 90, 49, 0.6)' }} />
-
-      <div className="absolute inset-0 overflow-y-auto scrollbar-hide">
+    <div className="h-full w-full bg-[#F5F7FA] overflow-y-auto scrollbar-hide relative">
       <div className="min-h-full flex flex-col">
         <JourneyHeader />
 
@@ -86,7 +74,6 @@ export function Journey3Screen9({ reducedMotion = false, onNext }: Journey3Scree
         </main>
 
         <JourneyFooter />
-      </div>
       </div>
     </div>
   );

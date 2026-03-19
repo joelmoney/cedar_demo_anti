@@ -33,19 +33,7 @@ export function Journey3Screen8({ reducedMotion = false, onNext }: Journey3Scree
   }, []);
 
   return (
-    <div className="h-full w-full relative overflow-hidden" style={{ backgroundColor: '#465A31' }}>
-      <div
-        className="absolute inset-0 opacity-20"
-        style={{
-          backgroundImage: 'url(/images/kora_background.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          filter: 'grayscale(100%)',
-        }}
-      />
-      <div className="absolute inset-0" style={{ backgroundColor: 'rgba(70, 90, 49, 0.6)' }} />
-
-      <div className="absolute inset-0 flex flex-col">
+    <div className="h-full w-full flex flex-col bg-[#F8F9FA]">
       <JourneyHeader />
 
       <div className="flex-1 overflow-y-auto">
@@ -150,7 +138,6 @@ export function Journey3Screen8({ reducedMotion = false, onNext }: Journey3Scree
 
           <JourneyFooter />
         </div>
-      </div>
       </div>
     </div>
   );
