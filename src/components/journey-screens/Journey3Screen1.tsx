@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
+import { RotateCcw } from 'lucide-react';
 
 interface Journey3Screen1Props {
   reducedMotion?: boolean;
@@ -9,6 +10,16 @@ export function Journey3Screen1({ }: Journey3Screen1Props) {
   const [showLoopingVideo, setShowLoopingVideo] = useState(false);
   const introVideoRef = useRef<HTMLVideoElement>(null);
   const loopingVideoRef = useRef<HTMLVideoElement>(null);
+
+  const handleReplay = () => {
+    setShowLoopingVideo(false);
+    setTimeout(() => {
+      if (introVideoRef.current) {
+        introVideoRef.current.currentTime = 0;
+        introVideoRef.current.play().catch(err => console.error('Error replaying video:', err));
+      }
+    }, 50);
+  };
 
   useEffect(() => {
     const introVideo = introVideoRef.current;
@@ -45,7 +56,7 @@ export function Journey3Screen1({ }: Journey3Screen1Props) {
       />
       <div className="absolute inset-0" style={{ backgroundColor: 'rgba(70, 90, 49, 0.6)' }} />
 
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
         <div
           className="w-[300px] h-[300px] rounded-[20px] overflow-hidden"
           style={{
@@ -72,6 +83,13 @@ export function Journey3Screen1({ }: Journey3Screen1Props) {
             </video>
           )}
         </div>
+        <button
+          onClick={handleReplay}
+          className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-sm"
+          aria-label="Replay video"
+        >
+          <RotateCcw size={20} className="text-white" />
+        </button>
       </div>
     </div>
   );
