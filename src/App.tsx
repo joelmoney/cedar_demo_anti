@@ -8,6 +8,9 @@ import { SliderScreen } from './components/screens/SliderScreen';
 import { PresenterControls } from './components/PresenterControls';
 import { DraggableModal } from './components/DraggableModal';
 import { Journey, journeys, mapSlidersToJourney } from './config/journeys';
+import { Journey3Screen1 } from './components/journey-screens/Journey3Screen1';
+import { Journey3Screen2 } from './components/journey-screens/Journey3Screen2';
+import { Journey3Screen3 } from './components/journey-screens/Journey3Screen3';
 
 type FlowState = 'start' | 'welcome' | 'preamble' | 'sliders' | 'persona' | 'journey' | 'journeyRecap' | 'recap';
 
@@ -389,6 +392,72 @@ function App() {
     if (!currentJourney) return undefined;
     return parseInt(currentJourney.id.replace('journey', ''));
   };
+
+  const isJourney3FullScreenMode = currentJourney?.id === 'journey3' && currentJourneyStep >= 0 && currentJourneyStep <= 2;
+
+  if (flowState === 'journey' && isJourney3FullScreenMode) {
+    let screenComponent;
+    if (currentJourneyStep === 0) {
+      screenComponent = <Journey3Screen1 reducedMotion={reducedMotion} onNext={handleJourneyNext} />;
+    } else if (currentJourneyStep === 1) {
+      screenComponent = <Journey3Screen2 reducedMotion={reducedMotion} onNext={handleJourneyNext} />;
+    } else if (currentJourneyStep === 2) {
+      screenComponent = <Journey3Screen3 reducedMotion={reducedMotion} onNext={handleJourneyNext} />;
+    }
+
+    return (
+      <div
+        className="flex h-screen overflow-hidden select-none"
+        onClick={handleCornerTap}
+        style={{ touchAction: 'manipulation' }}
+      >
+        <LeftPanel
+          step={{
+            id: currentJourneyStep,
+            headline: leftPanelContent.headline,
+            body: leftPanelContent.body,
+            bullets: leftPanelContent.bullets,
+            instruction: leftPanelContent.instruction,
+            screen: 'feature',
+          }}
+          reducedMotion={reducedMotion}
+          showLookDeeper={showLookDeeper}
+          onLookDeeperClick={handleLookDeeperClick}
+          journeyNumber={getJourneyNumber()}
+          journeyScore={selectedJourneyScore}
+          showNavigation={flowState === 'journey'}
+          onNext={handleJourneyNext}
+          onPrevious={handleJourneyPrevious}
+          currentStep={currentJourneyStep}
+          totalSteps={currentJourney?.steps.length}
+          onRestart={handleReturnToSliders}
+          userSliderValues={userSliderValues}
+          eyebrow={currentJourney?.eyebrowTitle}
+        />
+        <div className="flex-1">
+          {screenComponent}
+        </div>
+
+        {presenterMode && currentJourney && (
+          <PresenterControls
+            currentStep={currentJourneyStep}
+            totalSteps={currentJourney.steps.length}
+            onNext={handleJourneyNext}
+            onPrevious={handleJourneyPrevious}
+            onJumpTo={handleJumpTo}
+            onReset={handleRestart}
+          />
+        )}
+
+        <DraggableModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          title={modalContent?.headline || ''}
+          content={modalContent?.deeperContent || ''}
+        />
+      </div>
+    );
+  }
 
   return (
     <div
