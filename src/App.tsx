@@ -506,7 +506,11 @@ function App() {
         onRestart={handleRestart}
         reducedMotion={reducedMotion}
         fullScreen={false}
-        backgroundImage={currentJourney?.persona.imageUrl}
+        backgroundImage={
+          currentJourney?.id === 'journey3' && currentJourneyStep >= 4 && currentJourneyStep <= 8
+            ? '/images/kora_background.jpg'
+            : currentJourney?.persona.imageUrl
+        }
         userSliderValues={userSliderValues}
       />
 
