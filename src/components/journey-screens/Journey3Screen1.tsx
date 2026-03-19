@@ -9,7 +9,7 @@ export function Journey3Screen1({ }: Journey3Screen1Props) {
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: 'url(/images/persona_1.jpg)',
+          backgroundImage: 'url(/images/kora_background.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
