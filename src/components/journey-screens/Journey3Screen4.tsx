@@ -60,28 +60,35 @@ export function Journey3Screen4({ }: Journey3Screen4Props) {
       <div className="absolute inset-0" style={{ backgroundColor: 'rgba(70, 90, 49, 0.6)' }} />
 
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-        {!showLoopingVideo && (
-          <video
-            ref={introVideoRef}
-            className="w-full h-full object-cover"
-            playsInline
-          >
-            <source src="/videos/kora_cedarintel_p3.mp4" type="video/mp4" />
-          </video>
-        )}
-        {showLoopingVideo && (
-          <video
-            ref={loopingVideoRef}
-            className="w-full h-full object-cover"
-            playsInline
-            loop
-          >
-            <source src="/videos/kora_cedarintel_resting.mp4" type="video/mp4" />
-          </video>
-        )}
+        <div
+          className="w-[300px] h-[300px] rounded-[20px] overflow-hidden"
+          style={{
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)'
+          }}
+        >
+          {!showLoopingVideo && (
+            <video
+              ref={introVideoRef}
+              className="w-full h-full object-cover"
+              playsInline
+            >
+              <source src="/videos/kora_cedarintel_p3.mp4" type="video/mp4" />
+            </video>
+          )}
+          {showLoopingVideo && (
+            <video
+              ref={loopingVideoRef}
+              className="w-full h-full object-cover"
+              playsInline
+              loop
+            >
+              <source src="/videos/kora_cedarintel_resting.mp4" type="video/mp4" />
+            </video>
+          )}
+        </div>
         <button
           onClick={handleReplay}
-          className="absolute bottom-8 flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-sm"
+          className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-sm"
           aria-label="Replay video"
         >
           <RotateCcw size={20} className="text-white" />
