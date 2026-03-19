@@ -248,7 +248,7 @@ export const journeys: Journey[] = [
   {
     id: 'journey3',
     name: 'Journey 3',
-    eyebrowTitle: 'Kora',
+    eyebrowTitle: 'KORA OUTBOUND',
     persona: {
       name: 'Juliana Torres',
       age: 52,
@@ -282,23 +282,23 @@ export const journeys: Journey[] = [
     },
     leftPanelContent: [
       {
-        headline: 'Left Panel Content - Screen 1',
-        body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.',
+        headline: 'Juliana\'s real-world context',
+        body: 'Cedar Intelligence sees Juliana has a manageable balance, has a history of paying bills but doesn\'t typically engage with digital outreach, making her a good candidate for proactive voice outreach with Kora Outbound for proactive voice outreach. When Kora places the call, it uses an ABC Health caller ID so Juliana recognizes who\'s reaching out.',
         instruction: 'Tap to continue',
       },
       {
-        headline: 'Left Panel Content - Screen 2',
-        body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.',
+        headline: 'Framing around security and flexibility, not collections',
+        body: 'When Juliana answers, Kora warmly introduces itself as ABC Health\'s AI assistant, quickly confirms it\'s speaking with her, then securely verifies her identity and walks through flexible payment options, keeping things supportive, compliant, and respectful of her time.',
         instruction: 'Tap to continue',
       },
       {
-        headline: 'Left Panel Content - Screen 3',
-        body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.',
+        headline: 'Surfacing her HSA balance as an ideal option',
+        body: 'Because Cedar Intelligence detects Juliana\'s HSA can cover her bill, Kora gently suggests using it and offers secure ways to pay now or via a texted link later. Juliana chooses the link so she can finish when it\'s convenient.',
         instruction: 'Tap to continue',
       },
       {
-        headline: 'Left Panel Content - Screen 4',
-        body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.',
+        headline: 'Confirming the texted payment link',
+        body: 'Kora sends a secure payment link to Juliana\'s mobile number, confirms it went to the right place, and checks if she needs anything else before ending the conversation.',
         instruction: 'Tap to continue',
       },
       {
