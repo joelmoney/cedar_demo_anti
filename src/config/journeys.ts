@@ -297,11 +297,6 @@ export const journeys: Journey[] = [
         instruction: 'Tap to continue',
       },
       {
-        headline: 'Left Panel Content - Screen 3',
-        body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.',
-        instruction: 'Tap to continue',
-      },
-      {
         headline: 'Left Panel Content - Screen 4',
         body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.',
         instruction: 'Tap to continue',
@@ -375,11 +370,6 @@ export const journeys: Journey[] = [
       },
       {
         headline: 'Welcome to Journey 3 - Screen 9',
-        body: 'Your success story starts here.',
-        instruction: 'Tap to continue',
-      },
-      {
-        headline: 'Welcome to Journey 3 - Screen 10',
         body: 'Your success story starts here.',
         instruction: 'Tap to finish',
       },
