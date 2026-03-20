@@ -117,14 +117,19 @@ export function Journey4Screen4({ reducedMotion = false, onNext }: Journey4Scree
         if (message.component === 'button') {
           setTimeout(() => {
             setShowButton(true);
+            setTimeout(() => {
+              if (scrollContainerRef.current) {
+                scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
+              }
+            }, 100);
           }, 400);
+        } else {
+          setTimeout(() => {
+            if (scrollContainerRef.current) {
+              scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
+            }
+          }, 100);
         }
-
-        setTimeout(() => {
-          if (scrollContainerRef.current) {
-            scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
-          }
-        }, 100);
 
         currentIndex++;
         const nextDelay = delays[currentIndex] || 800;
