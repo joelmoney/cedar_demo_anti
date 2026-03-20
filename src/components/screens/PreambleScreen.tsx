@@ -90,40 +90,123 @@ function Section1({ reducedMotion }: { reducedMotion: boolean }) {
   );
 }
 
-// Section 2: Timed overlay video with three key messages
+// Section 2: Patient responsibility statistics with video
 function Section2({ reducedMotion }: { reducedMotion: boolean }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.5 });
+  const [count1, setCount1] = useState(0);
+  const [count2, setCount2] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    const duration = 2000;
+    const steps = 60;
+    const target1 = 64;
+    const target2 = 25;
+
+    let currentStep = 0;
+    const timer = setInterval(() => {
+      currentStep++;
+      if (currentStep >= steps) {
+        setCount1(target1);
+        setCount2(target2);
+        clearInterval(timer);
+      } else {
+        setCount1(Math.round((target1 / steps) * currentStep));
+        setCount2(Math.round((target2 / steps) * currentStep));
+      }
+    }, duration / steps);
+
+    return () => clearInterval(timer);
+  }, [isInView]);
+
   return (
-   <div className="w-full min-h-screen flex items-center justify-center" style={{ backgroundColor: '#1B2C2C' }}>
-      <div className="w-full max-w-[1920px] h-[1080px] flex items-center justify-center px-16 gap-16">
-        <motion.div
-          initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="flex-1 max-w-xl"
-        >
-          <h2 className="headline mb-8" style={{ color: '#F9F8F1' }}>
-            The Problem
-          </h2>
-          <div className="space-y-6 bodycopy" style={{ color: '#F9F8F1' }}>
-            <p>
-              Patient responsibility is rising while commercial and government payer rules remain locked in slow-burn agreements.
+   <div ref={ref} className="w-full min-h-screen flex items-center justify-center" style={{ backgroundColor: '#2D5F50' }}>
+      <div className="w-full max-w-[1920px] h-[1080px] flex items-center justify-center px-16 py-16">
+        <div className="w-full flex flex-col gap-12">
+          <motion.div
+            initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <h2 className="headline mb-6" style={{ color: '#F9F8F1' }}>
+              Patients Now Responsible For Higher Share Of Cost
+            </h2>
+            <p className="subheadline" style={{ color: '#F9F8F1' }}>
+              Patients are the <strong>fastest growing</strong> payer and the <strong>most expensive</strong> to collect from.
             </p>
-            <p>
-              Many providers are still relying on the same pay-slip like in approaches to drive patient payments.
-            </p>
-            <p>
-              The result: a persistent, not-yet-intelligent duct-taped mix of patient outreach and back-end reconciliation analysis for healthcare financial operations to operate.
-            </p>
+          </motion.div>
+
+          <div className="flex items-center justify-center mb-8">
+            <div className="w-full max-w-3xl">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full rounded-3xl"
+                style={{ display: isInView ? 'block' : 'none' }}
+              >
+                <source src="/videos/CDR_Preamb_sec2graph.mp4" type="video/mp4" />
+              </video>
+            </div>
           </div>
-        </motion.div>
-        <div className="flex-1">
-          <TimedVideoOverlay
-            videoSrc="/videos/TestDataFlower_v03.5_kfEveryframe.mp4"
-            videoClassName="w-full rounded-3xl"
-            textPosition="above"
-            textClassName="hidden"
-            overlays={[]}
-          />
+
+          <div className="flex items-start justify-center gap-16">
+            <motion.div
+              initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex-1 max-w-xl"
+            >
+              <h3 className="headline mb-8" style={{ color: '#F9F8F1' }}>
+                The Problem
+              </h3>
+              <div className="space-y-6 bodycopy" style={{ color: '#F9F8F1' }}>
+                <p>
+                  Patient responsibility is rising while commercial and government payer rules remain locked in slow-burn agreements.
+                </p>
+                <p>
+                  Many providers are still relying on the same pay-slip like in approaches to drive patient payments.
+                </p>
+                <p>
+                  The result: a persistent, not-yet-intelligent duct-taped mix of patient outreach and back-end reconciliation analysis for healthcare financial operations to operate.
+                </p>
+              </div>
+            </motion.div>
+
+            <div className="flex flex-col gap-8">
+              <motion.div
+                initial={reducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="bg-white rounded-2xl p-8 min-w-[320px]"
+              >
+                <div className="text-6xl font-bold mb-4" style={{ color: '#2D5F50', fontFamily: 'var(--font-family-serif)' }}>
+                  {count1}%
+                </div>
+                <p className="bodycopy" style={{ color: '#2D3A20' }}>
+                  Increase in consumers enrolled in HDHPs
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={reducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="bg-white rounded-2xl p-8 min-w-[320px]"
+              >
+                <div className="text-6xl font-bold mb-4" style={{ color: '#2D5F50', fontFamily: 'var(--font-family-serif)' }}>
+                  {count2}%
+                </div>
+                <p className="bodycopy" style={{ color: '#2D3A20' }}>
+                  Adults who postponed getting healthcare they needed because of the cost
+                </p>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

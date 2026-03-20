@@ -276,6 +276,15 @@
     color: var(--color-text-accent);
   }
 
+  .subheadline {
+    font-family: var(--font-family-serif);
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-regular);
+    letter-spacing: 0;
+    line-height: 1.4;
+    color: var(--color-text-accent);
+  }
+
   .bodycopy {
     font-family: var(--font-family-sans);
     font-size: var(--font-size-base);
