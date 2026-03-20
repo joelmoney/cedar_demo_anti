@@ -155,7 +155,7 @@ export function Journey4Screen4({ reducedMotion = false, onNext }: Journey4Scree
 
       <div
         ref={scrollContainerRef}
-        className="flex-1 overflow-y-auto px-4 py-4 pb-24 scrollbar-hide"
+        className="flex-1 overflow-y-auto px-4 py-4 pb-20 scrollbar-hide"
       >
         <div className="space-y-4">
           {messages.map((message, index) => (
@@ -190,7 +190,28 @@ export function Journey4Screen4({ reducedMotion = false, onNext }: Journey4Scree
                   ))}
                 </div>
               ) : message.component === 'button' ? (
-                <div className="w-full" />
+                <div className="w-full">
+                  {showButton && (
+                    <motion.div
+                      initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, ease: 'easeOut' }}
+                      className="space-y-3 mt-4"
+                    >
+                      <div className="text-center">
+                        <div className="text-sm text-[#64748B] mb-1">Total due for 2 bills</div>
+                        <div className="text-3xl font-bold text-[#1E293B]">$1,303.89</div>
+                      </div>
+
+                      <button
+                        onClick={onNext}
+                        className="w-full bg-[#4169E1] text-white font-semibold text-base py-4 rounded-xl hover:bg-[#3557C5] transition-colors shadow-sm btnpulse"
+                      >
+                        Make a partial payment
+                      </button>
+                    </motion.div>
+                  )}
+                </div>
               ) : (
                 <div
                   className={`max-w-[75%] px-4 py-2.5 rounded-2xl ${
@@ -207,31 +228,12 @@ export function Journey4Screen4({ reducedMotion = false, onNext }: Journey4Scree
         </div>
       </div>
 
-      {showButton && (
-        <motion.div
-          initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 space-y-3"
-        >
-          <div className="text-center">
-            <div className="text-sm text-[#64748B] mb-1">Total due for 2 bills</div>
-            <div className="text-3xl font-bold text-[#1E293B]">$1,303.89</div>
-          </div>
-
-          <button
-            onClick={onNext}
-            className="w-full bg-[#4169E1] text-white font-semibold text-base py-4 rounded-xl hover:bg-[#3557C5] transition-colors shadow-sm btnpulse"
-          >
-            Make a partial payment
-          </button>
-
-          <button className="w-full flex items-center justify-center gap-2 text-[#4169E1] font-medium text-sm py-3 hover:bg-gray-50 rounded-xl transition-colors border border-gray-200">
-            <Plus className="w-4 h-4" />
-            Ask me about your bill...
-          </button>
-        </motion.div>
-      )}
+      <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
+        <button className="w-full flex items-center justify-center gap-2 text-[#4169E1] font-medium text-sm py-3 hover:bg-gray-50 rounded-xl transition-colors border border-gray-200">
+          <Plus className="w-4 h-4" />
+          Ask me about your bill...
+        </button>
+      </div>
     </div>
   );
 }
