@@ -140,17 +140,21 @@ function Section2({ reducedMotion }: { reducedMotion: boolean }) {
           </motion.div>
 
           <div className="flex items-center justify-center mb-8">
-            <div className="w-full max-w-[64rem]">
+            <div
+              className="w-full max-w-[64rem] rounded-3xl"
+              style={{
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)',
+                minHeight: '500px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
               <video
                 autoPlay
-                loop
                 muted
                 playsInline
                 className="w-full rounded-3xl"
-                style={{
-                  display: isInView ? 'block' : 'none',
-                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)'
-                }}
               >
                 <source src="/videos/CDR_Preamb_sec2graph.mp4" type="video/mp4" />
               </video>
@@ -183,7 +187,7 @@ function Section2({ reducedMotion }: { reducedMotion: boolean }) {
             <div className="flex flex-col gap-8">
               <motion.div
                 initial={reducedMotion ? { opacity: 1 } : { opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
+                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="flex items-center gap-6"
                 style={{ width: '400px' }}
@@ -198,7 +202,7 @@ function Section2({ reducedMotion }: { reducedMotion: boolean }) {
 
               <motion.div
                 initial={reducedMotion ? { opacity: 1 } : { opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
+                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
                 className="flex items-center gap-6"
                 style={{ width: '400px' }}
@@ -224,7 +228,7 @@ function Section3({ reducedMotion, scrollContainer }: { reducedMotion: boolean; 
     <div className="w-full" style={{ backgroundColor: '#0F130A' }}>
       <div className="w-full max-w-[1920px] mx-auto">
         <ScrollVideo
-          videoSrc="/videos/TestDataFlower_v03.5_kfEveryframe.mp4"
+          videoSrc="/videos/CDR_Preamb_sec3flower.mp4"
           className="w-full"
           scrollContainer={scrollContainer}
         >
