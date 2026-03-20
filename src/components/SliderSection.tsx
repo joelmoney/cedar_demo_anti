@@ -312,7 +312,8 @@ export function SliderSection({
               <p className="text-xs uppercase tracking-wider font-bold mb-3 text-gray-600">
                 ADMIN FUNCTIONS
               </p>
-              <div className="space-y-2 mb-4">
+              {/* Hidden for now - can be unhidden later */}
+              <div className="space-y-2 mb-4" style={{ display: 'none' }}>
                 <p className="text-sm font-mono text-gray-700">
                   <span className="font-semibold">Score:</span> {result.score}
                 </p>
