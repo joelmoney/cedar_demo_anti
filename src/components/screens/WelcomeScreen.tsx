@@ -51,25 +51,35 @@ export function WelcomeScreen({
           transition={{ duration: 0.35, ease: easings.smooth }}
           className="text-center"
         >
-          <p className="eyebrow text-electricgreen mb-4">
-            CEDAR INTELLIGENCE
-          </p>
+          <img
+            src="/images/start_logo.png"
+            alt="Cedar"
+            className="mx-auto h-16 mb-[4.5rem]"
+          />
           <h1 className="headline text-electricgreen mb-4">
             Welcome
           </h1>
-          <p className="bodycopy text-white mb-8">
+          <p className="bodycopy text-white">
             Choose how you would like to begin
           </p>
         </motion.div>
 
-        <div className="flex flex-row gap-4">
-          <NeonButton onClick={onStartWithPreamble} reducedMotion={reducedMotion} delay={0.1}>
-            Full Experience
-          </NeonButton>
+        <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-row gap-4">
+            <NeonButton onClick={onStartWithPreamble} reducedMotion={reducedMotion} delay={0.1}>
+              Full Experience
+            </NeonButton>
 
-          <NeonOutlineButton onClick={onStartWithoutPreamble} reducedMotion={reducedMotion}>
-            Quick Start
-          </NeonOutlineButton>
+            <NeonOutlineButton onClick={onStartWithoutPreamble} reducedMotion={reducedMotion}>
+              Quick Start
+            </NeonOutlineButton>
+          </div>
+
+          <div className="versionlabel">
+            <p className="eyebrow text-electricgreen mt-4">
+              BETA RELEASE 3.20.26
+            </p>
+          </div>
         </div>
       </div>
     </div>

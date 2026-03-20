@@ -45,7 +45,8 @@ export function PreambleScreen({ onContinue, reducedMotion, onSliderChange, onJu
       <Section2 reducedMotion={reducedMotion} />
       <Section3 reducedMotion={reducedMotion} scrollContainer={scrollContainer} />
       <Section4 reducedMotion={reducedMotion} />
-      <Section5 reducedMotion={reducedMotion} onComplete={onContinue} onSliderChange={onSliderChange} onJumpToJourney={onJumpToJourney} onRestart={onRestart} />
+      <Section5 reducedMotion={reducedMotion} />
+      <Section6 reducedMotion={reducedMotion} onComplete={onContinue} onSliderChange={onSliderChange} onJumpToJourney={onJumpToJourney} onRestart={onRestart} />
     </div>
   );
 }
@@ -122,7 +123,7 @@ function Section2({ reducedMotion }: { reducedMotion: boolean }) {
   }, [isInView]);
 
   return (
-   <div ref={ref} className="w-full flex items-center justify-center" style={{ backgroundColor: '#2D5F50', minHeight: '130vh' }}>
+   <div ref={ref} className="w-full flex items-center justify-center" style={{ backgroundColor: 'rgb(27, 44, 44)', minHeight: '130vh' }}>
       <div className="w-full max-w-[1920px] flex items-center justify-center px-16 py-16">
         <div className="w-full flex flex-col gap-12">
           <motion.div
@@ -183,10 +184,10 @@ function Section2({ reducedMotion }: { reducedMotion: boolean }) {
                 initial={reducedMotion ? { opacity: 1 } : { opacity: 0, x: 20 }}
                 animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="flex items-center gap-6"
-                style={{ width: '400px' }}
+                className="flex items-center gap-6 p-6"
+                style={{ width: '400px', backgroundColor: '#172424', borderRadius: '.25rem' }}
               >
-                <div className="text-6xl font-bold" style={{ color: '#A0E5CE', fontFamily: 'var(--font-family-serif)', flexShrink: 0 }}>
+                <div className="text-6xl font-bold" style={{ color: '#A0E5CE', fontFamily: 'var(--font-family-serif)', flexShrink: 0, minWidth: '120px' }}>
                   {count1}%
                 </div>
                 <p className="bodycopy" style={{ color: '#F9F8F1' }}>
@@ -198,10 +199,10 @@ function Section2({ reducedMotion }: { reducedMotion: boolean }) {
                 initial={reducedMotion ? { opacity: 1 } : { opacity: 0, x: 20 }}
                 animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="flex items-center gap-6"
-                style={{ width: '400px' }}
+                className="flex items-center gap-6 p-6"
+                style={{ width: '400px', backgroundColor: '#172424', borderRadius: '.25rem' }}
               >
-                <div className="text-6xl font-bold" style={{ color: '#A0E5CE', fontFamily: 'var(--font-family-serif)', flexShrink: 0 }}>
+                <div className="text-6xl font-bold" style={{ color: '#A0E5CE', fontFamily: 'var(--font-family-serif)', flexShrink: 0, minWidth: '120px' }}>
                   {count2}%
                 </div>
                 <p className="bodycopy" style={{ color: '#F9F8F1' }}>
@@ -227,9 +228,9 @@ function Section3({ reducedMotion, scrollContainer }: { reducedMotion: boolean; 
           scrollContainer={scrollContainer}
         >
           <div className="space-y-6 max-w-2xl">
-            <p className="eyebrow" style={{ color: '#F9F8F1' }}>THE SOLUTION</p>
+            <p className="eyebrow" style={{ color: '#F9F8F1' }}>THE SOLUTION: CEDAR INTELLIGENCE</p>
             <h2 className="headline" style={{ color: '#F9F8F1' }}>
-              Cedar Intelligence Powering the first one-of-one patient financial experience
+              Powering the first one-of-one patient financial experience
 
             </h2>
             <p className="bodycopy" style={{ color: '#F9F8F1' }}>
@@ -245,10 +246,62 @@ function Section3({ reducedMotion, scrollContainer }: { reducedMotion: boolean; 
   );
 }
 
-// Section 4: "The Problem" with video
+// Section 4: AI-Powered Personalization Engine stats
 function Section4({ reducedMotion }: { reducedMotion: boolean }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.3 });
+
+  const stats = [
+    { number: '1.5', suffix: 'B', label: 'Patient payment interactions' },
+    { number: '50', suffix: 'M+', label: 'Unique patient journeys' },
+    { number: '$10', suffix: 'B+', label: 'Patient payments processed' },
+    { number: '10+', suffix: 'years', label: 'Healthcare, technology, and AI expertise' }
+  ];
+
   return (
-     <div className="w-full flex items-center justify-center" style={{ backgroundColor: '#1B2C2C', height: '1080px' }}>
+    <div ref={ref} className="w-full flex items-center justify-center" style={{ backgroundColor: '#0F130A', minHeight: '100vh' }}>
+      <div className="w-full max-w-[1920px] mx-auto flex items-center justify-center px-16 py-24">
+        <div className="w-full grid grid-cols-2 gap-24 items-start">
+          <motion.div
+            initial={reducedMotion ? { opacity: 1 } : { opacity: 0, x: -20 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="headline" style={{ color: '#F9F8F1' }}>
+              Cedar's AI-Powered Personalization Engine Strengthened by:
+            </h2>
+          </motion.div>
+
+          <div className="space-y-12">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.4 }}
+                className="flex flex-col pb-12"
+                style={{ borderBottom: index < stats.length - 1 ? '2px solid #F9F8F1' : 'none' }}
+              >
+                <div className="mb-4" style={{ fontFamily: 'var(--font-family-sans)', fontSize: '140px', lineHeight: '1', fontWeight: '700' }}>
+                  <span style={{ color: '#F9F8F1' }}>{stat.number}</span>
+                  <span style={{ color: '#DBFFB5' }}>{stat.suffix}</span>
+                </div>
+                <p style={{ color: '#F9F8F1', fontFamily: 'var(--font-family-sans)', fontSize: '1.5rem', lineHeight: '1.5' }}>
+                  {stat.label}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Section 5: "The Problem" with video
+function Section5({ reducedMotion }: { reducedMotion: boolean }) {
+  return (
+     <div className="w-full flex items-center justify-center" style={{ backgroundColor: '#0F130A', height: '1080px' }}>
       <div className="w-full max-w-[1920px] h-[1080px] flex items-center justify-center px-16">
         <motion.div
           initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
@@ -312,8 +365,8 @@ function Section4({ reducedMotion }: { reducedMotion: boolean }) {
   );
 }
 
-// Section 5: Interactive slider section
-function Section5({
+// Section 6: Interactive slider section
+function Section6({
   reducedMotion,
   onComplete,
   onSliderChange,
