@@ -23,7 +23,7 @@ export function Journey3Screen9({ reducedMotion = false, onNext }: Journey3Scree
             <img src="/images/mail.png" alt="Mail" className="w-[65px] h-[55px]" />
           </motion.div>
 
-          <h1 className="text-2xl font-bold text-[#1E293B] text-center mb-3">
+          <h1 className="text-[28px] font-bold text-[#1E1B4B] leading-tight text-center mb-3" style={{ fontFamily: 'Rethink Sans, system-ui, sans-serif' }}>
             Payment confirmed!
           </h1>
 

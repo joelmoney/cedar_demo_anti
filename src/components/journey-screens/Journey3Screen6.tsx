@@ -36,7 +36,7 @@ export function Journey3Screen6({ reducedMotion = false, onNext }: Journey3Scree
     <div className="h-full w-full flex flex-col bg-[#F5F7FA]">
       <JourneyHeader />
 
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto scrollbar-hide">
         <div className="max-w-md mx-auto bg-white min-h-full flex flex-col">
           <div className="px-5 py-4 flex-1">
             <button className="flex items-center gap-2 text-slate-600 text-[15px] mb-6">
@@ -46,7 +46,7 @@ export function Journey3Screen6({ reducedMotion = false, onNext }: Journey3Scree
               Back to your bills
             </button>
 
-            <h1 className="text-[28px] font-bold text-[#0F1729] leading-tight mb-3">
+            <h1 className="text-[28px] font-bold text-[#1E1B4B] leading-tight mb-3" style={{ fontFamily: 'Rethink Sans, system-ui, sans-serif' }}>
               Your visit to ABC Health System
             </h1>
 
