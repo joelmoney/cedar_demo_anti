@@ -70,20 +70,12 @@ export function Journey3Screen6({ reducedMotion = false, onNext }: Journey3Scree
 
               <div className="flex flex-col gap-3 mb-5">
                 <div className="flex items-center gap-2">
-                  <div className="w-5 h-5 rounded-full bg-[#EEF2FF] flex items-center justify-center flex-shrink-0">
-                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                      <path d="M1 4L3.5 6.5L9 1" stroke="#4F46E5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
+                  <img src="/images/shield_icon.svg" alt="Shield" className="w-[14px] h-[16px] flex-shrink-0" />
                   <span className="text-[14px] text-slate-700">Insurance applied</span>
-                  <img src="/images/abc_logo.png" alt="Blue Star Insurance" className="h-4 ml-auto" />
+                  <img src="/images/blueinsurance_logo.png" alt="Blue Insurance" className="w-[70px] h-[20px] ml-auto" />
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-5 h-5 rounded-full bg-[#D1FAE5] flex items-center justify-center flex-shrink-0">
-                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                      <path d="M1 4L3.5 6.5L9 1" stroke="#10B981" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
+                  <img src="/images/clock_icon.png" alt="Clock" className="w-[14px] h-[14px] flex-shrink-0" />
                   <span className="text-[14px] text-slate-700">Ready to pay</span>
                 </div>
               </div>
