@@ -21,7 +21,7 @@ export function Journey6Screen1({ reducedMotion = false, onNext }: Journey6Scree
     <div
       className="h-full w-full relative overflow-hidden flex items-center justify-center"
       style={{
-        backgroundImage: 'url(/images/J4_lockscreen.png)',
+        backgroundImage: 'url(/images/J6_lockscreen.png)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
