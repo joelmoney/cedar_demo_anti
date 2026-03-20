@@ -84,12 +84,7 @@ export function Journey3Screen8({ reducedMotion = false, onNext }: Journey3Scree
 
               <div className="bg-white border border-slate-200 rounded-xl p-4">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-8 h-8 rounded-full bg-[#4169E1] flex items-center justify-center flex-shrink-0">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M2 8C2 4.686 4.686 2 8 2C11.314 2 14 4.686 14 8C14 11.314 11.314 14 8 14C4.686 14 2 11.314 2 8Z" fill="white"/>
-                      <path d="M8 5V8L10 10" stroke="#4169E1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
+                  <img src="/images/bluestar_logo.png" alt="Blue Star" className="w-6 h-6 flex-shrink-0" />
                   <div className="flex-1 text-left">
                     <div className="text-[16px] font-semibold text-slate-900">Blue Star Wallet</div>
                     <div className="text-[13px] text-slate-600">Health Savings Account</div>
