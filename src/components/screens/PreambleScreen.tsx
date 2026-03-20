@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef, ReactNode, useState, useEffect } from 'react';
+import React, { useRef, ReactNode, useState, useEffect } from 'react';
 import { ArrowDown } from 'lucide-react';
 import { ScrollVideo } from '../ScrollVideo';
 import { TimedVideoOverlay } from '../TimedVideoOverlay';
@@ -34,27 +34,48 @@ function Section({ children, reducedMotion, direction = 'left' }: { children: Re
 export function PreambleScreen({ onContinue, reducedMotion, onSliderChange, onJumpToJourney, onRestart }: PreambleScreenProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [scrollContainer, setScrollContainer] = useState<HTMLElement | null>(null);
+  const section1Ref = useRef<HTMLDivElement>(null);
+  const [resetSections, setResetSections] = useState(0);
 
   useEffect(() => {
     setScrollContainer(scrollContainerRef.current);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!section1Ref.current) return;
+
+      const rect = section1Ref.current.getBoundingClientRect();
+      const isSection1Visible = rect.top >= -100 && rect.top <= window.innerHeight;
+
+      if (isSection1Visible) {
+        setResetSections(prev => prev + 1);
+      }
+    };
+
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener('scroll', handleScroll);
+      return () => container.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
+
   return (
     <div ref={scrollContainerRef} className="h-screen overflow-y-auto bg-white">
-      <Section1 reducedMotion={reducedMotion} />
+      <Section1 reducedMotion={reducedMotion} ref={section1Ref} />
       <Section2 reducedMotion={reducedMotion} />
-      <Section3 reducedMotion={reducedMotion} scrollContainer={scrollContainer} />
+      <Section3 reducedMotion={reducedMotion} scrollContainer={scrollContainer} resetTrigger={resetSections} />
       <Section4 reducedMotion={reducedMotion} />
-      <Section5 reducedMotion={reducedMotion} />
+      <Section5 reducedMotion={reducedMotion} resetTrigger={resetSections} />
       <Section6 reducedMotion={reducedMotion} onComplete={onContinue} onSliderChange={onSliderChange} onJumpToJourney={onJumpToJourney} onRestart={onRestart} />
     </div>
   );
 }
 
 // Section 1: Hero intro with Cedar Intelligence title
-function Section1({ reducedMotion }: { reducedMotion: boolean }) {
+const Section1 = React.forwardRef<HTMLDivElement, { reducedMotion: boolean }>(({ reducedMotion }, ref) => {
   return (
-    <div className="w-full min-h-screen bg-white flex items-center justify-center">
+    <div ref={ref} className="w-full min-h-screen bg-white flex items-center justify-center">
       <div className="w-full max-w-[1920px] h-[1080px] flex flex-col items-center justify-center px-16">
         <motion.div
           initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
@@ -89,7 +110,7 @@ function Section1({ reducedMotion }: { reducedMotion: boolean }) {
       </div>
     </div>
   );
-}
+});
 
 // Section 2: Patient responsibility statistics with video
 function Section2({ reducedMotion }: { reducedMotion: boolean }) {
@@ -218,11 +239,21 @@ function Section2({ reducedMotion }: { reducedMotion: boolean }) {
 }
 
 // Section 3: Scroll-based video with overlay text
-function Section3({ reducedMotion, scrollContainer }: { reducedMotion: boolean; scrollContainer: HTMLElement | null }) {
+function Section3({ reducedMotion, scrollContainer, resetTrigger }: { reducedMotion: boolean; scrollContainer: HTMLElement | null; resetTrigger: number }) {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [resetKey, setResetKey] = useState(0);
+
+  useEffect(() => {
+    if (resetTrigger > 0) {
+      setResetKey(prev => prev + 1);
+    }
+  }, [resetTrigger]);
+
   return (
-    <div className="w-full" style={{ backgroundColor: '#0F130A' }}>
+    <div ref={sectionRef} className="w-full" style={{ backgroundColor: '#0F130A' }}>
       <div className="w-full max-w-[1920px] mx-auto">
         <ScrollVideo
+          key={resetKey}
           videoSrc="/videos/CDR_Preamb_sec3flower.mp4"
           className="w-full"
           scrollContainer={scrollContainer}
@@ -298,68 +329,110 @@ function Section4({ reducedMotion }: { reducedMotion: boolean }) {
   );
 }
 
-// Section 5: "The Problem" with video
-function Section5({ reducedMotion }: { reducedMotion: boolean }) {
+// Section 5: Segmentation video with text overlays, then two-column layout
+function Section5({ reducedMotion, resetTrigger }: { reducedMotion: boolean; resetTrigger: number }) {
+  const [videoEnded, setVideoEnded] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [resetKey, setResetKey] = useState(0);
+
+  const handleVideoEnd = () => {
+    setVideoEnded(true);
+  };
+
+  useEffect(() => {
+    if (resetTrigger > 0) {
+      setVideoEnded(false);
+      setResetKey(prev => prev + 1);
+    }
+  }, [resetTrigger]);
+
   return (
-     <div className="w-full flex items-center justify-center" style={{ backgroundColor: '#0F130A', height: '1080px' }}>
-      <div className="w-full max-w-[1920px] h-[1080px] flex items-center justify-center px-16">
-        <motion.div
-          initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-2xl w-full"
-        >
-          <TimedVideoOverlay
-            videoSrc="/videos/TestDataFlower_v03.5_kfEveryframe.mp4"
-            videoClassName="w-full rounded-3xl"
-            textPosition="above"
-            textClassName="py-12"
-            overlays={[
-              {
-                time: 0,
-                duration: 3,
-                content: (
-                  <div className="text-center">
-                    <h2 className="headline mb-4" style={{ color: '#F9F8F1' }}>
-                      A Nudge or a Lifeline
-                    </h2>
-                    <p className="bodycopy" style={{ color: '#F9F8F1' }}>
-                      Cedar Intelligence analyzes past patient interactions and payment behavior, how complex bills from large, when payment is urgent, and how financial gaps typically affect them, from post-visit payment gaps and high-cost stays, through rigorous affordability evaluations.
-                    </p>
-                  </div>
-                ),
-              },
-              {
-                time: 3.5,
-                duration: 3,
-                content: (
-                  <div className="text-center">
-                    <h2 className="headline mb-4" style={{ color: '#F9F8F1' }}>
-                      Personalized Care
-                    </h2>
-                    <p className="bodycopy" style={{ color: '#F9F8F1' }}>
-                      Whether a patient needs a gentle nudge or a more proactive guide, Cedar uses intelligent digital payments to check for the optimal path for that patient.
-                    </p>
-                  </div>
-                ),
-              },
-              {
-                time: 7,
-                duration: 3,
-                content: (
-                  <div className="text-center">
-                    <h2 className="headline mb-4" style={{ color: '#F9F8F1' }}>
-                      Better Outcomes
-                    </h2>
-                    <p className="bodycopy" style={{ color: '#F9F8F1' }}>
-                      With Cedar Intelligence providers can deliver a pay-per-one financial experience to every patient you serve, driving higher digital payments and better outcomes for both the patient and provider.
-                    </p>
-                  </div>
-                ),
-              },
-            ]}
-          />
-        </motion.div>
+    <div ref={sectionRef} className="w-full flex items-center justify-center" style={{ backgroundColor: '#0F130A', minHeight: '1080px' }}>
+      <div className="w-full max-w-[1920px] flex items-center justify-center px-16 py-16">
+        {!videoEnded ? (
+          <div className="w-full flex flex-col items-center">
+            <TimedVideoOverlay
+              key={resetKey}
+              videoSrc="/videos/CDR_Preamb_sec5segmentation.mp4"
+              videoClassName="w-full"
+              textPosition="below"
+              textClassName="py-12"
+              onVideoEnd={handleVideoEnd}
+              loop={false}
+              overlays={[
+                {
+                  time: 1,
+                  duration: 2,
+                  content: (
+                    <div className="text-center space-y-4">
+                      <h3 className="headline" style={{ color: '#F9F8F1' }}>
+                        Headline 1 will go here
+                      </h3>
+                      <p className="bodycopy" style={{ color: '#F9F8F1' }}>
+                        This is placeholder copy
+                      </p>
+                    </div>
+                  ),
+                },
+                {
+                  time: 3,
+                  duration: 2,
+                  content: (
+                    <div className="text-center space-y-4">
+                      <h3 className="headline" style={{ color: '#F9F8F1' }}>
+                        Headline 2 will go here
+                      </h3>
+                      <p className="bodycopy" style={{ color: '#F9F8F1' }}>
+                        This is placeholder copy
+                      </p>
+                    </div>
+                  ),
+                },
+                {
+                  time: 5,
+                  duration: 2,
+                  content: (
+                    <div className="text-center space-y-4">
+                      <h3 className="headline" style={{ color: '#F9F8F1' }}>
+                        Headline 3 will go here
+                      </h3>
+                      <p className="bodycopy" style={{ color: '#F9F8F1' }}>
+                        This is placeholder copy
+                      </p>
+                    </div>
+                  ),
+                },
+              ]}
+            />
+          </div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="w-full grid grid-cols-2 gap-16 items-center"
+          >
+            <div>
+              <h2 className="headline mb-8" style={{ color: '#F9F8F1' }}>
+                A Nudge or a Lifeline
+              </h2>
+              <p className="bodycopy" style={{ color: '#F9F8F1' }}>
+                Placeholder body copy text. Please provide the actual copy for this section.
+              </p>
+            </div>
+            <div>
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full rounded-xl"
+              >
+                <source src="/videos/CDR_Preamb_sec5segmentationLOOP.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </motion.div>
+        )}
       </div>
     </div>
   );
