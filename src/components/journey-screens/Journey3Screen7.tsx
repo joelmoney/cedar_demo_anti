@@ -99,7 +99,7 @@ export function Journey3Screen7({ reducedMotion = false, onNext }: Journey3Scree
                 <div className="h-px bg-[#E2E8F0]"></div>
 
                 <button className="w-full bg-white py-3.5 hover:bg-slate-50 transition-colors flex items-center gap-2.5">
-                  <img src="/images/apple_logo.png" alt="Apple Pay" className="w-[21px] h-[31px] flex-shrink-0" />
+                  <img src="/images/apple_logo.png" alt="Apple Pay" className="w-[21px] h-[23px] flex-shrink-0" />
                   <span className="flex-1 text-left text-[14px] text-[#475569]">Apple Pay</span>
                   <svg width="6" height="10" viewBox="0 0 6 10" fill="none" className="flex-shrink-0">
                     <path d="M1 1L5 5L1 9" stroke="#94A3B8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
