@@ -122,8 +122,8 @@ function Section2({ reducedMotion }: { reducedMotion: boolean }) {
   }, [isInView]);
 
   return (
-   <div ref={ref} className="w-full min-h-screen flex items-center justify-center" style={{ backgroundColor: '#2D5F50' }}>
-      <div className="w-full max-w-[1920px] h-[1080px] flex items-center justify-center px-16 py-16">
+   <div ref={ref} className="w-full flex items-center justify-center" style={{ backgroundColor: '#2D5F50', minHeight: '130vh' }}>
+      <div className="w-full max-w-[1920px] flex items-center justify-center px-16 py-16">
         <div className="w-full flex flex-col gap-12">
           <motion.div
             initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
@@ -140,28 +140,22 @@ function Section2({ reducedMotion }: { reducedMotion: boolean }) {
           </motion.div>
 
           <div className="flex items-center justify-center mb-8">
-            <div
-              className="w-full max-w-[64rem] rounded-3xl"
-              style={{
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)',
-                minHeight: '500px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}
-            >
+            <div className="w-full max-w-[64rem]">
               <video
                 autoPlay
                 muted
                 playsInline
                 className="w-full rounded-3xl"
+                style={{
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)'
+                }}
               >
                 <source src="/videos/CDR_Preamb_sec2graph.mp4" type="video/mp4" />
               </video>
             </div>
           </div>
 
-          <div className="flex items-start justify-center gap-16">
+          <div className="flex items-center justify-center gap-16">
             <motion.div
               initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
