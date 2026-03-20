@@ -417,6 +417,11 @@ export const journeys: Journey[] = [
         instruction: 'Tap to continue',
       },
       {
+        headline: 'Proactive text notification',
+        body: 'Saffron receives a text message from ABC Health notifying them that their bill is ready. The message includes a direct link to view and pay the bill online.',
+        instruction: 'Tap to continue',
+      },
+      {
         headline: 'Surfacing the right solutions',
         body: 'Cedar first provides a concise bill summary and clearly surfaces the option to make a partial payment instead of an all‑or‑nothing choice.\n\nSaffron wants to learn more about making a partial payment and clicks on that option.',
         instruction: 'Tap to continue',
@@ -456,6 +461,11 @@ export const journeys: Journey[] = [
       {
         headline: 'Welcome to Journey 4 - Screen 2',
         body: 'Experience streamlined processes built for speed.',
+        instruction: 'Tap to continue',
+      },
+      {
+        headline: 'Welcome to Journey 4 - Screen 3',
+        body: 'View your bill summary and payment options.',
         instruction: 'Tap to continue',
       },
       {

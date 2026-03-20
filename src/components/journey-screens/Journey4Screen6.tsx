@@ -1,8 +1,8 @@
+import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { ChevronDown } from 'lucide-react';
 import { JourneyHeader } from '../JourneyHeader';
 import { JourneyFooter } from '../JourneyFooter';
-import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 interface Journey4Screen6Props {
   reducedMotion?: boolean;
@@ -10,237 +10,164 @@ interface Journey4Screen6Props {
 }
 
 export function Journey4Screen6({ reducedMotion = false, onNext }: Journey4Screen6Props) {
-  const [selectedMethod, setSelectedMethod] = useState<string>('saved-card');
-  const [isPaymentSummaryExpanded, setIsPaymentSummaryExpanded] = useState(false);
+  const [showContent, setShowContent] = useState(false);
+  const [selectedFrequency, setSelectedFrequency] = useState<'monthly' | 'biweekly'>('monthly');
+  const [autoAdd, setAutoAdd] = useState(false);
+  const [showViewMore, setShowViewMore] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowContent(true);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <div className="h-full w-full bg-[#F5F7FA] overflow-y-auto scrollbar-hide relative">
+    <div className="h-full w-full bg-[#F5F7FA] overflow-y-auto scrollbar-hide">
       <div className="min-h-full flex flex-col">
         <JourneyHeader />
 
-        <main className="flex-1 px-5 pt-4 pb-6">
-          <div className="space-y-4">
-            {/* Payment Summary Card */}
-            <button
-              onClick={() => setIsPaymentSummaryExpanded(!isPaymentSummaryExpanded)}
-              className="w-full bg-white rounded-2xl p-4 shadow-sm border border-slate-200 flex items-center justify-between hover:border-[#4169E1] transition-colors"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-[#F8FAFC] rounded-lg flex items-center justify-center">
-                  <img src="/images/credit-card.png" alt="" className="w-6 h-6" />
+        <main className="flex-1 px-5 pt-6 pb-6">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={showContent ? { opacity: 1 } : { opacity: 0 }}
+            transition={{
+              duration: 0.5,
+              ease: [0.25, 0.46, 0.45, 0.94]
+            }}
+            className="space-y-6"
+          >
+            {/* Title */}
+            <div>
+              <h1 className="text-[#1E293B] font-bold text-2xl mb-3">Create a payment plan</h1>
+              <p className="text-[#475569] text-[15px] leading-relaxed">
+                Our automatic payment plans are interest-free and can be cancelled anytime until the total{' '}
+                <span className="font-semibold text-[#1E293B]">$1,000.00</span> is paid.
+              </p>
+            </div>
+
+            {/* Installment Terms Box */}
+            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
+              <div className="flex items-start justify-between">
+                <div>
+                  <p className="text-[#1E293B] text-base font-semibold mb-1">Installment terms</p>
+                  <p className="text-sm text-[#64748B]">0% interest</p>
                 </div>
-                <div className="text-left">
-                  <div className="text-[#1E293B] font-semibold text-sm">Payment summary</div>
-                  <div className="text-[#64748B] text-sm">Paying today: $66.66</div>
+                <div className="text-right">
+                  <span className="text-[#1E293B] text-base font-semibold">$66.66 monthly</span>
                 </div>
               </div>
-              <ChevronDown
-                className={`w-5 h-5 text-[#64748B] transition-transform ${
-                  isPaymentSummaryExpanded ? 'rotate-180' : ''
-                }`}
-              />
-            </button>
+            </div>
 
-            {/* Step 1: Payment method */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-[#4169E1] text-white flex items-center justify-center text-sm font-bold">
-                  1
-                </div>
-                <h2 className="text-lg font-bold text-[#1E293B]">Payment method</h2>
-              </div>
+            {/* Choose Plan Details Section */}
+            <div className="space-y-5 pt-2">
+              <h2 className="text-[#1E293B] font-semibold text-lg">Choose your plan details</h2>
 
-              {/* Saved payment information */}
+              {/* How Often */}
               <div className="space-y-3">
-                <div className="text-[#475569] text-sm font-semibold">Saved payment information</div>
+                <label className="block text-[#1E293B] text-[15px] font-medium">
+                  How often do you want to pay?
+                </label>
 
-                <button
-                  onClick={() => setSelectedMethod('saved-card')}
-                  className={`w-full bg-white rounded-xl p-4 border-2 transition-all flex items-center justify-between ${
-                    selectedMethod === 'saved-card'
-                      ? 'border-[#4169E1] shadow-sm'
-                      : 'border-[#E2E8F0]'
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <div
-                      className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                        selectedMethod === 'saved-card'
-                          ? 'border-[#4169E1]'
-                          : 'border-[#CBD5E1]'
-                      }`}
-                    >
-                      {selectedMethod === 'saved-card' && (
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#4169E1]"></div>
-                      )}
-                    </div>
-                    <img src="/images/Visa.png" alt="Visa" className="w-8 h-6 object-contain" />
-                    <span className="text-[#1E293B] font-medium text-sm">Card •••• 5464</span>
-                  </div>
-                  <button className="p-1 hover:bg-[#FEE2E2] rounded transition-colors">
-                    <img src="/images/trash.png" alt="Delete" className="w-5 h-5" />
+                <div className="flex gap-3">
+                  {/* Monthly Button */}
+                  <button
+                    onClick={() => setSelectedFrequency('monthly')}
+                    className={`flex-1 px-5 py-3 rounded-lg font-semibold text-[15px] transition-all ${
+                      selectedFrequency === 'monthly'
+                        ? 'bg-[#4169E1] text-white shadow-sm'
+                        : 'bg-white text-[#1E293B] border border-slate-200'
+                    }`}
+                  >
+                    Monthly
                   </button>
-                </button>
+
+                  {/* Every Two Weeks Button */}
+                  <button
+                    onClick={() => setSelectedFrequency('biweekly')}
+                    className={`flex-1 px-5 py-3 rounded-lg font-semibold text-[15px] transition-all ${
+                      selectedFrequency === 'biweekly'
+                        ? 'bg-[#4169E1] text-white shadow-sm'
+                        : 'bg-white text-[#1E293B] border border-slate-200'
+                    }`}
+                  >
+                    Every two weeks
+                  </button>
+                </div>
               </div>
 
-              {/* Other payment options */}
-              <div className="space-y-3 mt-4">
-                <div className="text-[#475569] text-sm font-semibold">Other payment options</div>
-
-                <motion.button
-                  initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.1 }}
-                  onClick={() => setSelectedMethod('debit-credit')}
-                  className={`w-full bg-white rounded-xl p-4 border-2 transition-all flex items-center ${
-                    selectedMethod === 'debit-credit'
-                      ? 'border-[#4169E1] shadow-sm'
-                      : 'border-[#E2E8F0]'
-                  }`}
-                >
-                  <div
-                    className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-3 ${
-                      selectedMethod === 'debit-credit'
-                        ? 'border-[#4169E1]'
-                        : 'border-[#CBD5E1]'
-                    }`}
-                  >
-                    {selectedMethod === 'debit-credit' && (
-                      <div className="w-2.5 h-2.5 rounded-full bg-[#4169E1]"></div>
-                    )}
-                  </div>
-                  <img src="/images/credit-card.png" alt="" className="w-5 h-5 mr-3" />
-                  <span className="text-[#1E293B] font-medium text-sm">Debit or credit card</span>
-                </motion.button>
-
-                <motion.button
-                  initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.2 }}
-                  onClick={() => setSelectedMethod('hsa-fsa')}
-                  className={`w-full bg-white rounded-xl p-4 border-2 transition-all flex items-center ${
-                    selectedMethod === 'hsa-fsa'
-                      ? 'border-[#4169E1] shadow-sm'
-                      : 'border-[#E2E8F0]'
-                  }`}
-                >
-                  <div
-                    className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-3 ${
-                      selectedMethod === 'hsa-fsa'
-                        ? 'border-[#4169E1]'
-                        : 'border-[#CBD5E1]'
-                    }`}
-                  >
-                    {selectedMethod === 'hsa-fsa' && (
-                      <div className="w-2.5 h-2.5 rounded-full bg-[#4169E1]"></div>
-                    )}
-                  </div>
-                  <img src="/images/hba-card.png" alt="" className="w-5 h-5 mr-3" />
-                  <span className="text-[#1E293B] font-medium text-sm">HSA, FSA, or HRA</span>
-                </motion.button>
-
-                <motion.button
-                  initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.3 }}
-                  onClick={() => setSelectedMethod('bank')}
-                  className={`w-full bg-white rounded-xl p-4 border-2 transition-all flex items-center ${
-                    selectedMethod === 'bank'
-                      ? 'border-[#4169E1] shadow-sm'
-                      : 'border-[#E2E8F0]'
-                  }`}
-                >
-                  <div
-                    className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-3 ${
-                      selectedMethod === 'bank'
-                        ? 'border-[#4169E1]'
-                        : 'border-[#CBD5E1]'
-                    }`}
-                  >
-                    {selectedMethod === 'bank' && (
-                      <div className="w-2.5 h-2.5 rounded-full bg-[#4169E1]"></div>
-                    )}
-                  </div>
-                  <svg className="w-5 h-5 mr-3 text-[#1E293B]" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2L2 7v3h20V7l-10-5zM4 12v8h2v-8H4zm4 0v8h2v-8H8zm4 0v8h2v-8h-2zm4 0v8h2v-8h-2zm4 0v8h2v-8h-2zM2 22h20v-2H2v2z"/>
-                  </svg>
-                  <span className="text-[#1E293B] font-medium text-sm">Bank</span>
-                </motion.button>
-
-                <motion.button
-                  initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.4 }}
-                  onClick={() => setSelectedMethod('apple-pay')}
-                  className={`w-full bg-white rounded-xl p-4 border-2 transition-all flex items-center ${
-                    selectedMethod === 'apple-pay'
-                      ? 'border-[#4169E1] shadow-sm'
-                      : 'border-[#E2E8F0]'
-                  }`}
-                >
-                  <div
-                    className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-3 ${
-                      selectedMethod === 'apple-pay'
-                        ? 'border-[#4169E1]'
-                        : 'border-[#CBD5E1]'
-                    }`}
-                  >
-                    {selectedMethod === 'apple-pay' && (
-                      <div className="w-2.5 h-2.5 rounded-full bg-[#4169E1]"></div>
-                    )}
-                  </div>
-                  <img src="/images/ApplePay.png" alt="Apple Pay" className="h-5 w-auto mr-3" />
-                  <span className="text-[#1E293B] font-medium text-sm">Apple Pay</span>
-                </motion.button>
+              {/* Choose Length */}
+              <div className="space-y-3">
+                <label className="block text-[#1E293B] text-[15px] font-medium">
+                  Choose the length of your plan
+                </label>
+                <div className="relative">
+                  <select className="w-full px-4 py-3.5 text-[15px] text-[#1E293B] bg-white border border-slate-200 rounded-lg appearance-none focus:outline-none focus:border-[#4169E1] focus:ring-1 focus:ring-[#4169E1] transition-colors cursor-pointer">
+                    <option>15 payments of $66.66</option>
+                    <option>10 payments of $100.00</option>
+                    <option>20 payments of $50.00</option>
+                    <option>5 payments of $200.00</option>
+                  </select>
+                  <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#64748B] pointer-events-none" />
+                </div>
               </div>
 
-              {/* Continue button */}
+              {/* Auto-add Checkbox */}
+              <div className="bg-white rounded-2xl p-4 border border-slate-200">
+                <div className="flex items-start gap-3">
+                  <button
+                    onClick={() => setAutoAdd(!autoAdd)}
+                    className={`w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${
+                      autoAdd
+                        ? 'bg-[#4169E1] border-[#4169E1]'
+                        : 'bg-white border-[#CBD5E1]'
+                    }`}
+                  >
+                    {autoAdd && (
+                      <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
+                  </button>
+                  <div className="flex-1">
+                    <p className="text-[#1E293B] text-[15px] font-medium mb-1">
+                      Auto-add new bills to this plan
+                    </p>
+                    <p className="text-[#64748B] text-sm leading-relaxed">
+                      We'll automatically add any new bills to your plan and save you the hassle.
+                    </p>
+                    {showViewMore ? (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        className="mt-2 text-[#64748B] text-sm leading-relaxed"
+                      >
+                        <p>
+                          This feature ensures that all future bills from this provider are automatically included in your payment plan,
+                          helping you maintain consistent payments without manual updates.
+                        </p>
+                      </motion.div>
+                    ) : null}
+                    <button
+                      onClick={() => setShowViewMore(!showViewMore)}
+                      className="text-[#4169E1] text-sm font-semibold mt-1 hover:underline"
+                    >
+                      {showViewMore ? 'View less' : 'View more'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Continue Button */}
               <button
                 onClick={onNext}
-                className="w-full bg-[#4169E1] text-white font-semibold text-base py-4 rounded-xl hover:bg-[#3557C5] transition-colors shadow-sm mt-6 btnpulse"
+                className="w-full bg-[#4169E1] text-white font-semibold text-base py-4 rounded-xl hover:bg-[#3557C5] transition-colors shadow-sm btnpulse"
               >
                 Continue
               </button>
-
-              {/* Or pay with */}
-              <div className="flex items-center gap-3 my-6">
-                <div className="flex-1 h-px bg-[#E2E8F0]"></div>
-                <span className="text-[#64748B] text-sm">or pay with</span>
-                <div className="flex-1 h-px bg-[#E2E8F0]"></div>
-              </div>
-
-              {/* Payment buttons */}
-              <div className="flex gap-3 justify-center">
-                <img src="/images/pay_buttons.png" alt="Payment options" className="h-12 w-auto" />
-              </div>
-
-              {/* Secure payments */}
-              <div className="flex items-center justify-center gap-2 text-[#64748B] text-sm mt-6">
-                <img src="/images/lock.png" alt="" className="w-4 h-4" />
-                <span>Secure payments</span>
-              </div>
             </div>
-
-            {/* Step 2: Payment information */}
-            <div className="space-y-3 opacity-50 mt-8">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-[#CBD5E1] text-[#64748B] flex items-center justify-center text-sm font-bold">
-                  2
-                </div>
-                <h2 className="text-lg font-bold text-[#64748B]">Payment information</h2>
-              </div>
-            </div>
-
-            {/* Step 3: Review and pay */}
-            <div className="space-y-3 opacity-50">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-[#CBD5E1] text-[#64748B] flex items-center justify-center text-sm font-bold">
-                  3
-                </div>
-                <h2 className="text-lg font-bold text-[#64748B]">Review and pay</h2>
-              </div>
-            </div>
-          </div>
+          </motion.div>
         </main>
 
         <JourneyFooter />
