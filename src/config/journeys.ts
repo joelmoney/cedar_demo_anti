@@ -417,28 +417,28 @@ export const journeys: Journey[] = [
         instruction: 'Tap to continue',
       },
       {
-        headline: 'Proactive text notification',
-        body: 'Saffron receives a text message from ABC Health notifying them that their bill is ready. The message includes a direct link to view and pay the bill online.',
+        headline: 'Engaging in the right way',
+        body: 'Cedar alerts Saffron to their bill through the channel they engage with most, text, so the message lands where they\'re most responsive.',
         instruction: 'Tap to continue',
       },
       {
-        headline: 'Surfacing the right solutions',
-        body: 'Cedar first provides a concise bill summary and clearly surfaces the option to make a partial payment instead of an all‑or‑nothing choice.\n\nSaffron wants to learn more about making a partial payment and clicks on that option.',
+        headline: 'Surfacing the right options',
+        body: 'Powered by Cedar Intelligence and integrated throughout the Cedar Pay experience, Kora predicts that Saffron will ask why insurance did not cover this bill, so it proactively suggest that question on her home screen along with information about her deductible.\n\nSaffron clicks on that suggested question.',
         instruction: 'Tap to continue',
       },
       {
-        headline: 'Quick, secure verification',
-        body: 'Before showing sensitive details, Cedar verifies Saffron\'s identity with a simple, low‑friction check—no need to remember a username or reset a password. This keeps both the provider and Saffron protected without derailing their intent to pay.',
+        headline: 'Empathetic support, clear explanations',
+        body: 'With a human, clear, and empathetic tone, Kora is able to walk Saffron through the remaining balance and offer payment options that Saffron is most likely to engage with.',
         instruction: 'Tap to continue',
       },
       {
-        headline: 'Capturing what\'s possible today',
-        body: 'Cedar then asks Saffron how much they\'d like to pay right now. That amount becomes a key signal for Cedar Intelligence: it reflects Saffron\'s current cash on hand and willingness to stay engaged and pursue payment.\n\nUsing the partial amount Saffron enters, Cedar proposes an interest‑free payment plan with an installment slightly below that number. This both respects Saffron\'s budget and increases the likelihood that ABC Health collects more over time instead of losing the patient entirely.',
+        headline: 'From partial payment to a sustainable plan',
+        body: 'As Saffron enters their desired partial payment amount, Cedar Intelligence surfaces an interest‑free payment plan with an installment slightly below that number. This both respects Saffron\'s budget and increases the likelihood that ABC Health collects more over time instead of losing the patient entirely.\n\nSaffron opts for the payment plan after all.',
         instruction: 'Tap to continue',
       },
       {
         headline: 'Letting Saffron fine‑tune the plan',
-        body: 'From there, Saffron can adjust the start date, cadence, and installment amount within guardrails set by ABC Health. The interface makes it clear how changes affect the total timeline so Saffron can find the right balance between affordability and speed.',
+        body: 'Saffron can now adjust the start date, cadence, and installment amount within guardrails set by ABC Health. The interface makes it clear how changes affect the total timeline so Saffron can find the right balance between affordability and speed.',
         instruction: 'Tap to continue',
       },
       {
