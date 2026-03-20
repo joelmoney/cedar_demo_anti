@@ -30,6 +30,7 @@ import { Journey4Screen4 } from '../journey-screens/Journey4Screen4';
 import { Journey4Screen5 } from '../journey-screens/Journey4Screen5';
 import { Journey4Screen6 } from '../journey-screens/Journey4Screen6';
 import { Journey4Screen7 } from '../journey-screens/Journey4Screen7';
+import { Journey4Screen8 } from '../journey-screens/Journey4Screen8';
 import { Journey5Screen1 } from '../journey-screens/Journey5Screen1';
 import { Journey5Screen2 } from '../journey-screens/Journey5Screen2';
 import { Journey5Screen3 } from '../journey-screens/Journey5Screen3';
@@ -227,8 +228,13 @@ export function JourneyScreen({ step, stepNumber, totalSteps, reducedMotion, jou
   }
 
   if (journeyId === 'journey4' && stepNumber === 7) {
-    console.log('Rendering Journey4Screen7 - Payment plan confirmed');
+    console.log('Rendering Journey4Screen7 - Review payment plan');
     return <Journey4Screen7 reducedMotion={reducedMotion} onNext={onNext} />;
+  }
+
+  if (journeyId === 'journey4' && stepNumber === 8) {
+    console.log('Rendering Journey4Screen8 - Payment plan confirmed');
+    return <Journey4Screen8 reducedMotion={reducedMotion} onNext={onNext} />;
   }
 
   if (journeyId === 'journey5' && stepNumber === 1) {
