@@ -57,7 +57,7 @@ export function PersonaScreen({
             <h1 className="headline mt-4 mb-4">
               {leftPanelContent.headline}
             </h1>
-            <div className="grid grid-cols-3 gap-4 mt-6 mb-6">
+            <div className="grid grid-cols-2 gap-4 mt-6 mb-6">
               <div>
                 <p className="eyebrow">AGE:</p>
                 <p className="text-lg font-semibold" style={{ color: '#2D3A20' }}>{persona.age}</p>
@@ -65,10 +65,6 @@ export function PersonaScreen({
               <div>
                 <p className="eyebrow">DOB:</p>
                 <p className="text-lg font-semibold" style={{ color: '#2D3A20' }}>{persona.dob}</p>
-              </div>
-              <div>
-                <p className="eyebrow">HOMETOWN:</p>
-                <p className="text-lg font-semibold" style={{ color: '#2D3A20' }}>{persona.hometown}</p>
               </div>
             </div>
             <p className="bodycopy mt-6 mb-6">
