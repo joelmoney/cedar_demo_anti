@@ -131,7 +131,7 @@ function Section2({ reducedMotion }: { reducedMotion: boolean }) {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h2 className="headline mb-6" style={{ color: '#F9F8F1' }}>
+            <h2 className="headline mb-6" style={{ color: '#A0E5CE' }}>
               Patients Now Responsible For Higher Share Of Cost
             </h2>
             <p className="subheadline" style={{ color: '#F9F8F1' }}>
@@ -140,14 +140,17 @@ function Section2({ reducedMotion }: { reducedMotion: boolean }) {
           </motion.div>
 
           <div className="flex items-center justify-center mb-8">
-            <div className="w-full max-w-3xl">
+            <div className="w-full max-w-[64rem]">
               <video
                 autoPlay
                 loop
                 muted
                 playsInline
                 className="w-full rounded-3xl"
-                style={{ display: isInView ? 'block' : 'none' }}
+                style={{
+                  display: isInView ? 'block' : 'none',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)'
+                }}
               >
                 <source src="/videos/CDR_Preamb_sec2graph.mp4" type="video/mp4" />
               </video>
@@ -179,29 +182,31 @@ function Section2({ reducedMotion }: { reducedMotion: boolean }) {
 
             <div className="flex flex-col gap-8">
               <motion.div
-                initial={reducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={reducedMotion ? { opacity: 1 } : { opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="bg-white rounded-2xl p-8 min-w-[320px]"
+                className="flex items-center gap-6"
+                style={{ width: '400px' }}
               >
-                <div className="text-6xl font-bold mb-4" style={{ color: '#2D5F50', fontFamily: 'var(--font-family-serif)' }}>
+                <div className="text-6xl font-bold" style={{ color: '#A0E5CE', fontFamily: 'var(--font-family-serif)', flexShrink: 0 }}>
                   {count1}%
                 </div>
-                <p className="bodycopy" style={{ color: '#2D3A20' }}>
+                <p className="bodycopy" style={{ color: '#F9F8F1' }}>
                   Increase in consumers enrolled in HDHPs
                 </p>
               </motion.div>
 
               <motion.div
-                initial={reducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={reducedMotion ? { opacity: 1 } : { opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="bg-white rounded-2xl p-8 min-w-[320px]"
+                className="flex items-center gap-6"
+                style={{ width: '400px' }}
               >
-                <div className="text-6xl font-bold mb-4" style={{ color: '#2D5F50', fontFamily: 'var(--font-family-serif)' }}>
+                <div className="text-6xl font-bold" style={{ color: '#A0E5CE', fontFamily: 'var(--font-family-serif)', flexShrink: 0 }}>
                   {count2}%
                 </div>
-                <p className="bodycopy" style={{ color: '#2D3A20' }}>
+                <p className="bodycopy" style={{ color: '#F9F8F1' }}>
                   Adults who postponed getting healthcare they needed because of the cost
                 </p>
               </motion.div>
