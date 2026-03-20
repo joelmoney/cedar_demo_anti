@@ -18,7 +18,7 @@ type FlowState = 'start' | 'welcome' | 'preamble' | 'sliders' | 'persona' | 'jou
 function App() {
   console.log('🚀 App.tsx - Component mounting/rendering');
 
-  const [flowState, setFlowState] = useState<FlowState>('start');
+  const [flowState, setFlowState] = useState<FlowState>('welcome');
   const [currentJourney, setCurrentJourney] = useState<Journey | null>(null);
   const [currentJourneyStep, setCurrentJourneyStep] = useState(0);
   const [presenterMode, setPresenterMode] = useState(false);
@@ -129,10 +129,11 @@ function App() {
     }, []);
 
   const handleRestart = useCallback(() => {
-    setFlowState('start');
+    setFlowState('welcome');
     setCurrentJourney(null);
     setCurrentJourneyStep(0);
     setCompletedJourneysCount(0);
+    setUserSliderValues(null);
     }, []);
 
   const handleRestartToWelcome = useCallback(() => {
