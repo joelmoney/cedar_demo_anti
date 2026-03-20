@@ -852,7 +852,7 @@ export const sliderOptions: SliderOption[] = [
     max: 4,
     step: 1,
     defaultValue: 2,
-    segmentLabels: ['Not insured', 'Underinsured', 'Multi-Payer', 'Limited (Single-Payer)', 'Comprehensive'],
+    segmentLabels: ['Uninsured', 'Underinsured', 'Multi-Payer', 'Limited (Single-Payer)', 'Comprehensive'],
   },
   {
     id: 'digitalLiteracy',
